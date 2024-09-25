@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #2d3448;
+  --black: #1e1e1e;
+  --white: #fff;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Instrument Sans", sans-serif;
+  overflow-x: hidden;
+  max-width: 100%;
+  color: var(--black);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Playfair Display", system-ui;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.dropDownMenu {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px);
+  transition: all 0.4s ease;
+}
+
+
+.dropDown:hover .dropDownMenu {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.mobileNav {
+  right: -100%;
+  transition: all 0.5s ease;
+}
+
+.mobileNav.activemobileNav {
+  right: 0
+}
+
+.searchBar {
+  opacity: 0;
+  transition: all 0.4s ease;
+  right: 80px;
+}
+
+.searchBar.activesearchBar {
+  opacity: initial;
+}
+
+.swiper-image-wrapper {
+  height: calc(100vh - 250px);
+  position: relative;
+}
+
+.swiper-image-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.swiper-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.banner-swiper .swiper-pagination-bullet {
+  width: 30px !important;
+  height: 8px !important;
+  border-radius: 10px !important;
+  background: white !important;
+  opacity: 0.8 !important;
+}
+
+.banner-swiper .swiper-pagination-bullet-active {
+  background: green !important;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #1e1e1e !important;
+  --swiper-navigation-size: 22px !important;
+}
