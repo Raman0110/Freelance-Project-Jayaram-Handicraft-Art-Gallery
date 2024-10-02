@@ -1,12 +1,13 @@
 import React from 'react'
 import Breadcrumb from '../components/Breedcrum/Breadcrumb'
 
-const Contact = () => {
+
+const Shop = () => {
   return (
-    <>
-      <Breadcrumb location='Contact' />
-    </>
+    <div>
+      <Breadcrumb location='Shop' />
+    </div>
   )
 }
 
-export default Contact
+export default Shop

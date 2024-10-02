@@ -7,6 +7,9 @@ import {
 import './index.css'
 import Contact from './routes/Contact.jsx';
 import Home from './routes/Home.jsx';
+import About from './routes/About.jsx';
+import Shop from './routes/Shop.jsx';
+import Blog from './routes/Blog.jsx';
 import Layout from './routes/Layout/Layout.jsx';
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
@@ -19,6 +22,9 @@ const router = createBrowserRouter([
     children: [
       { path: "/", element: <Home /> },
       { path: "/contact", element: <Contact /> },
+      { path: "/about", element: <About /> },
+      { path: "/shop", element: <Shop /> },
+      { path: "/blogs", element: <Blog /> },
     ],
   },
 ]);

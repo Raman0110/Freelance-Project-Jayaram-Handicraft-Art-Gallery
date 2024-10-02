@@ -35,6 +35,10 @@ html {
   scroll-behavior: smooth;
 }
 
+nav ul a {
+  color: #525151;
+}
+
 .dropDownMenu {
   opacity: 0;
   pointer-events: none;
@@ -49,9 +53,16 @@ html {
   transform: translateY(0);
 }
 
+
 .mobileNav {
   right: -100%;
   transition: all 0.5s ease;
+}
+
+.mobileNav a {
+  color: white;
+  font-weight: 600;
+  font-size: larger;
 }
 
 .mobileNav.activemobileNav {
@@ -105,4 +116,44 @@ html {
 .swiper-button-prev {
   color: #1e1e1e !important;
   --swiper-navigation-size: 22px !important;
+}
+
+.react-tabs__tab {
+  cursor: pointer;
+  font-size: 22px;
+  font-family: "Playfair Display", system-ui;
+  outline: none;
+  color: #525151;
+}
+
+.react-tabs__tab--selected {
+  border-bottom: 1px solid #1e1e1e;
+  font-weight: 600;
+}
+
+.react-tabs__tab-list {
+  display: flex;
+  gap: 25px;
+  margin-bottom: 28px;
+}
+
+.addToCart {
+  bottom: -100%;
+  transition: all 0.4s ease;
+}
+
+.ProductCard:hover .addToCart {
+  bottom: 10px;
+}
+
+.categoryDropdown {
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s ease;
+}
+
+.blogCategory:hover .categoryDropdown {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(-20px);
 }

@@ -6,15 +6,11 @@ import { Outlet } from 'react-router-dom'
 const Layout = () => {
   return (
     <div className='layout'>
-      <div className="header">
-        <Header />
-      </div>
+      <Header />
       <div className="content">
         <Outlet />
       </div>
-      <div className="footer">
-        <Footer />
-      </div>
+      <Footer />
     </div>
   )
 }
