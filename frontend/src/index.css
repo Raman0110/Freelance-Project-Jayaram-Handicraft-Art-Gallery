@@ -16,27 +16,18 @@
 }
 
 body {
-  font-family: "Instrument Sans", sans-serif;
   overflow-x: hidden;
   max-width: 100%;
   color: var(--black);
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: "Playfair Display", system-ui;
-}
 
 html {
   scroll-behavior: smooth;
 }
 
 nav ul a {
-  color: #525151;
+  color: #57586E;
 }
 
 .dropDownMenu {
@@ -121,13 +112,12 @@ nav ul a {
 .react-tabs__tab {
   cursor: pointer;
   font-size: 22px;
-  font-family: "Playfair Display", system-ui;
   outline: none;
-  color: #525151;
+  color: #0D276A;
 }
 
 .react-tabs__tab--selected {
-  border-bottom: 1px solid #1e1e1e;
+  border-bottom: 1px solid #0D276A;
   font-weight: 600;
 }
 
@@ -156,4 +146,22 @@ nav ul a {
   opacity: 1;
   pointer-events: auto;
   transform: translateY(-20px);
+}
+
+.product-thumb .swiper-slide {
+  opacity: 0.5;
+}
+
+.product-thumb .swiper-slide.swiper-slide-thumb-active {
+  opacity: 1;
+}
+
+.product-thumbnail {
+  width: 100%;
+  height: 100%;
+}
+
+.product-thumbnail-image {
+  width: 100px !important;
+  height: 100px !important;
 }

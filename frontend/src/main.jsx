@@ -13,6 +13,8 @@ import Blog from './routes/Blog.jsx';
 import Layout from './routes/Layout/Layout.jsx';
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
+import Login from './routes/Login.jsx';
+import SinglePage from './routes/SinglePage.jsx';
 config.autoAddCss = false
 
 const router = createBrowserRouter([
@@ -25,8 +27,9 @@ const router = createBrowserRouter([
       { path: "/about", element: <About /> },
       { path: "/shop", element: <Shop /> },
       { path: "/blogs", element: <Blog /> },
+      { path: "/product/:id", element: <SinglePage /> }
     ],
-  },
+  }
 ]);
 
 createRoot(document.getElementById('root')).render(

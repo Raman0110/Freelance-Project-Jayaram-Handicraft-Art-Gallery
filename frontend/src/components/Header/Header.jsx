@@ -19,20 +19,20 @@ const Header = () => {
         <div className="container mx-auto">
           <div className="flex justify-between items-center">
             <div className="header-left flex gap-8 items-center">
-              <h1 className='font-bold text-2xl'>Jayram Handicraft <br /> Art Gallery</h1>
+              <h1 className='font-bold text-2xl text-[#0D276A]'>Jayram Handicraft <br /> Art Gallery</h1>
               <div className="search-bar relative hidden md:block">
-                <input type="text" name="search" id="" className='border border-[#525151] p-2 rounded-full w-80 outline-none' placeholder='Search Product..' />
-                <div className="searchIcon bg-[#525151] h-8 w-8 rounded-full flex items-center justify-center absolute right-1 top-[0.3rem] cursor-pointer">
+                <input type="text" name="search" id="" className='border outline-[#E64D3D] p-2 rounded-full w-80' placeholder='Search Product..' />
+                <div className="searchIcon bg-[#E64D3D] h-8 w-8 rounded-full flex items-center justify-center absolute right-1 top-[0.3rem] cursor-pointer">
                   <FontAwesomeIcon icon={faMagnifyingGlass} className='text-white' />
                 </div>
               </div>
             </div>
             <div className="header-right">
               <div className="flex gap-4">
-                <FontAwesomeIcon icon={faUser} size='lg' className='cursor-pointer' /><span className='hidden md:block cursor-pointer text-[#525151]'>Profile</span>
-                <FontAwesomeIcon icon={faCartShopping} size='lg' className='cursor-pointer' /><span className='hidden md:block cursor-pointer text-[#525151]' >Cart</span>
-                <FontAwesomeIcon icon={faMagnifyingGlass} size='lg' className='md:!hidden cursor-pointer text-[#525151]' onClick={setSearchBar} />
-                <FontAwesomeIcon icon={faBars} size='lg' className=' md:!hidden cursor-pointer text-[#525151]' onClick={setActive} />
+                <FontAwesomeIcon icon={faUser} size='lg' className='cursor-pointer' /><span className='hidden md:block cursor-pointer text-[#2B2E48]'>Profile</span>
+                <FontAwesomeIcon icon={faCartShopping} size='lg' className='cursor-pointer' /><span className='hidden md:block cursor-pointer text-[#2B2E48]'>Cart</span>
+                <FontAwesomeIcon icon={faMagnifyingGlass} size='lg' className='md:!hidden cursor-pointer text-[#57586E]' onClick={setSearchBar} />
+                <FontAwesomeIcon icon={faBars} size='lg' className=' md:!hidden cursor-pointer text-[#57586E]' onClick={setActive} />
               </div>
             </div>
           </div>
@@ -42,16 +42,16 @@ const Header = () => {
           <button className='bg-[#1e1e1e] p-4 text-white'>Search</button>
         </div>
       </header>
-      <nav className='bg-[#F5F3EB] hidden md:block font-semibold'>
-        <ul className='flex justify-center items-center gap-10 p-4 text-lg'>
+      <nav className='bg-[#F1F1F1] hidden md:block font-medium'>
+        <ul className='flex justify-center items-center gap-10 p-4'>
           <li><Link to='/'>Home</Link></li>
           <li><Link to='/about'>About</Link></li>
           <li className='dropDown relative'>
             <Link to='/category'>
               Categories
-              <FontAwesomeIcon icon={faAngleDown} className='relative top-0.5 ml-2 text-[#1e1e1e]' />
+              <FontAwesomeIcon icon={faAngleDown} className='relative top-0.5 ml-2' />
             </Link>
-            <ul className='dropDownMenu p-4 bg-white absolute flex flex-col gap-3 min-w-[200px] z-10'>
+            <ul className='dropDownMenu p-4 bg-white absolute flex flex-col gap-3 min-w-[200px] z-10 rounded-md'>
               <li><Link to='/category'>Buddha</Link></li>
               <li><Link to='/category'>Green Tara</Link></li>
               <li><Link to='/category'>Manjushree</Link></li>

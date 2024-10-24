@@ -10,18 +10,18 @@ const Contact = () => {
         <Breadcrumb location='Contact' />
         <div className="flex items-center justify-between max-md:flex-col-reverse">
           <div className="form-sec px-4 w-1/2 max-md:w-full">
-            <h1 className='text-3xl font-bold mb-4 capitalize'>Contact us</h1>
+            <h1 className='text-3xl font-bold mb-4 capitalize text-[#E64D3D]'>Contact us</h1>
             <form action="" className='mb-4'>
               <div className="relative form-input w-full mb-2">
-                <input type="text" name="" id="" className='w-full border-gray-600 border rounded-md outline-green-500 p-2 ps-8' placeholder='Name' />
+                <input type="text" name="" id="" className='w-full border-gray-400 border rounded-md outline-[#E64D3D] p-2 ps-8' placeholder='Name' />
                 <FontAwesomeIcon icon={faUser} className='absolute left-2 top-3 text-gray-400' />
               </div>
               <div className="relative form-input mb-2">
-                <input type="email" name="" id="" className='w-full border-gray-600 border rounded-md outline-green-500 p-2 ps-8' placeholder='Email' />
+                <input type="email" name="" id="" className='w-full border-gray-400 border rounded-md outline-[#E64D3D] p-2 ps-8' placeholder='Email' />
                 <FontAwesomeIcon icon={faEnvelope} className='absolute left-2 top-3 text-gray-400' />
               </div>
-              <textarea name="" id="" placeholder='Message' className='border-gray-600 border w-full outline-green-500 p-2 rounded-md' rows='6' />
-              <button className='bg-green-500 p-2 text-white rounded-md w-full' >Send</button>
+              <textarea name="" id="" placeholder='Message' className='border-gray-400 border w-full outline-[#E64D3D] p-2 rounded-md' rows='6' />
+              <button className='transition-colors duration-300 ease-out bg-[#E64D3D] hover:bg-[#b23e31] p-2 text-white rounded-md w-full' >Send</button>
             </form>
           </div>
           <div className="img-sec w-1/2 max-sm:w-[350px] max-md:w-[400px]">

@@ -15,10 +15,10 @@ const ProductTab = () => {
 
           <TabPanel>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[18px]">
-              <ProductCard />
-              <ProductCard />
-              <ProductCard />
-              <ProductCard />
+              <ProductCard imgSrc={"/images/thangka1.jpg"} />
+              <ProductCard imgSrc={"/images/greentara.jpg"} />
+              <ProductCard imgSrc={"/images/thangka1.jpg"} />
+              <ProductCard imgSrc={"/images/thangka2.jpg"} />
             </div>
           </TabPanel>
           <TabPanel>

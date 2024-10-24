@@ -7,9 +7,9 @@ import CategoryCard from '../CategoryCard/CategoryCard';
 
 const Category = () => {
   return (
-    <section className='category px-8 py-14 bg-[#F5F3EB]'>
+    <section className='category px-8 py-14'>
       <div className="container mx-auto">
-        <h2 className='section-heading text-3xl font-bold text-center text-[#525151]'>Explore Our Categories</h2>
+        <h2 className='section-heading text-3xl font-bold text-center text-[#E64D3D]'>Explore Our Categories</h2>
         <div className="container-cards mt-8">
           <Swiper className='banner-swiper'
             modules={[Navigation]}

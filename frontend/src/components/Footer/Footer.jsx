@@ -4,20 +4,20 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <footer className='bg-green-500 text-white'>
-      <div className="footer-top border-b-2 border-gray-300">
+    <footer className='bg-[#F1F1F1] text-[#2B2E48]'>
+      <div className="footer-top border-b-2 border-white">
         <div className="container mx-auto px-4 sm:px-0">
           <div className="grid md:grid-cols-3">
-            <div className="flex items-center gap-2 md:border-r-2 md:justify-center md:border-gray-300 py-4 px-2">
-              <FontAwesomeIcon icon={faLocationDot} size='lg' />
+            <div className="flex items-center gap-2 md:justify-center py-4 px-2">
+              <FontAwesomeIcon icon={faLocationDot} size='lg' color='#E64D3D' />
               <p>Bhaktapur, Nepal</p>
             </div>
-            <div className="flex items-center gap-2 md:border-r-2 md:justify-center md:border-gray-300 py-4 px-2">
-              <FontAwesomeIcon icon={faEnvelope} size='lg' />
+            <div className="flex items-center gap-2 md:justify-center py-4 px-2">
+              <FontAwesomeIcon icon={faEnvelope} size='lg' color='#E64D3D' />
               <p>Email us:<br /> jayramartgallery@gmail.com</p>
             </div>
             <div className="flex items-center gap-2 py-4 px-2 md:justify-center">
-              <FontAwesomeIcon icon={faPhone} size='lg' />
+              <FontAwesomeIcon icon={faPhone} size='lg' color='#E64D3D' />
               <p>Call us: <br /> 9801354688</p>
             </div>
           </div>
@@ -42,9 +42,9 @@ const Footer = () => {
             </div>
             <div className="footer-col">
               <h2 className='text-xl font-bold pb-2'>Contact</h2>
-              <p> <a href=""><FontAwesomeIcon icon={faEnvelope} className='mr-2' />   jayramhandicraft@gmail.com</a></p>
-              <p><a href=""> <FontAwesomeIcon icon={faPhone} className='mr-2' />   +977 9810123125</a></p>
-              <p><a href=""> <FontAwesomeIcon icon={faLocationDot} className='mr-2' />   Bhaktapur, Nepal</a></p>
+              <p> <a href=""><FontAwesomeIcon icon={faEnvelope} className='mr-2' color='#E64D3D' />   jayramhandicraft@gmail.com</a></p>
+              <p><a href=""> <FontAwesomeIcon icon={faPhone} className='mr-2' color='#E64D3D' />+977 9810123125</a></p>
+              <p><a href=""> <FontAwesomeIcon icon={faLocationDot} className='mr-2' color='#E64D3D' />   Bhaktapur, Nepal</a></p>
             </div>
           </div>
         </div>
