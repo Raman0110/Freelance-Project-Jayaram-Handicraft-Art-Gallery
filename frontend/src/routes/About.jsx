@@ -14,9 +14,9 @@ const About = () => {
             <img src="/images/reg2.jpg" alt="" className='h-full w-full object-cover rounded-xl border-4 max-sm:object-top border-gray-600' />
           </div>
           <div className="text-sec max-sm:px-4">
-            <h1 className='text-2xl max-sm:text-xl max-lg:text-center font-bold text-[#0D276A] max-sm:py-2 py-4'>Welcome To Jayram Handicraft Art Gallery</h1>
-            <h1 className='text-2xl max-sm:text-xl font-bold pb-2 text-[#E64D3D]'>About us</h1>
-            <p className='text-gray-600'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis error earum rem dolor illum nostrum qui explicabo nam porro adipisci, mollitia eius maiores voluptatum veritatis cum recusandae placeat dicta harum hic quas. Debitis praesentium ipsum asperiores porro optio laborum aliquam harum tempora repellat consequuntur! Soluta, sint laudantium! Numquam, quis culpa Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa doloribus possimus rem ut a. Quam aliquam unde cumque. Possimus ab ex deleniti vero adipisci id voluptate expedita facilis ad. Officiis.</p>
+            <h1 className='text-2xl max-sm:text-xl max-lg:text-center font-bold max-sm:py-2 pt-4'>Welcome To Jayram Handicraft Art Gallery</h1>
+            <h1 className='text-2xl max-sm:text-xl font-bold py-4 text-[#0D276A]'>About us</h1>
+            <p className='text-gray-600 pt-4'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis error earum rem dolor illum nostrum qui explicabo nam porro adipisci, mollitia eius maiores voluptatum veritatis cum recusandae placeat dicta harum hic quas. Debitis praesentium ipsum asperiores porro optio laborum aliquam harum tempora repellat consequuntur! Soluta, sint laudantium! Numquam, quis culpa Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa doloribus possimus rem ut a. Quam aliquam unde cumque. Possimus ab ex deleniti vero adipisci id voluptate expedita facilis ad. Officiis.</p>
           </div>
         </div>
       </div>

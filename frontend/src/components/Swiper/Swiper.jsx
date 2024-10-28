@@ -18,12 +18,12 @@ const Slider = () => {
     >
       <SwiperSlide>
         <div className="swiper-image-wrapper md:h-[78vh]">
-          <img src="/images/thangka2.jpg" alt="" />
+          <img src="/images/sliderImg1.jpg" alt="" className='object-center' />
         </div>
       </SwiperSlide>
       <SwiperSlide>
         <div className="swiper-image-wrapper md:h-[78vh]">
-          <img src="/images/greentara.jpg" alt="" className='object-top' />
+          <img src="/images/login.jpg" alt="" className='object-center' />
         </div>
       </SwiperSlide>
       <SwiperSlide>

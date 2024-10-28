@@ -1,6 +1,7 @@
 import React from 'react'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import ProductCard from '../ProductCard/ProductCard';
+import { Link } from 'react-router-dom';
 
 const ProductTab = () => {
   return (
@@ -15,10 +16,12 @@ const ProductTab = () => {
 
           <TabPanel>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[18px]">
-              <ProductCard imgSrc={"/images/thangka1.jpg"} />
-              <ProductCard imgSrc={"/images/greentara.jpg"} />
-              <ProductCard imgSrc={"/images/thangka1.jpg"} />
-              <ProductCard imgSrc={"/images/thangka2.jpg"} />
+              <Link to="/product/1">
+                <ProductCard imgSrc={"/images/buddha.jpg"} />
+              </Link>
+              <ProductCard imgSrc={"/images/buddha2.jpg"} />
+              <ProductCard imgSrc={"/images/buddha3.JPG"} />
+              <ProductCard imgSrc={"/images/buddha4.jpg"} />
             </div>
           </TabPanel>
           <TabPanel>

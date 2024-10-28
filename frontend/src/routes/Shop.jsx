@@ -17,7 +17,7 @@ const Shop = () => {
       <Breadcrumb location='Shop' />
       <div className="container mx-auto">
         <div className="flex mt-4 gap-2 items-start">
-          <div className={`z-50 lg:h-[100vh] overflow-auto filerSection w-[25%] bg-[#f1f1f1] p-5 rounded-md fixed lg:sticky top-0 ${isFilterOpen ? 'right-0' : '-right-full'} transition-all duration-300 ease-in-out`}>
+          <div className={`z-20 lg:h-[100vh] overflow-auto filerSection w-[25%] bg-white p-5 rounded-md fixed lg:sticky top-0 ${isFilterOpen ? 'right-0' : '-right-full'} transition-all duration-300 ease-in-out`}>
             <p className='text-end lg:hidden'>
               <FontAwesomeIcon icon={faTimes} onClick={() => setFilterOpen(!isFilterOpen)} className='cursor-pointer' />
             </p>
@@ -87,7 +87,7 @@ const Shop = () => {
               <div className="flex justify-end gap-2">
                 <div>
                   <span className='font-medium text-md'>Sort By</span>
-                  <select className='border outline-none rounded-sm border-black p-1 ml-3'>
+                  <select className='border outline-none rounded-lg p-1 ml-3'>
                     <option value="">A-Z</option>
                     <option value="">Price- Low to High</option>
                     <option value="">Price- High to Low</option>

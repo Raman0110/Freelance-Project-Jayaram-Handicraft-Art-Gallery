@@ -18,7 +18,7 @@
 body {
   overflow-x: hidden;
   max-width: 100%;
-  color: var(--black);
+  background-color: #f1f1f1;
 }
 
 
@@ -26,9 +26,16 @@ html {
   scroll-behavior: smooth;
 }
 
-nav ul a {
-  color: #57586E;
+.headerNav li {
+  transition: color 0.3s ease-out;
+
 }
+
+.headerNav li:hover {
+  color: #0D276A;
+}
+
+
 
 .dropDownMenu {
   opacity: 0;
@@ -82,7 +89,7 @@ nav ul a {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 .swiper-image-wrapper img {
@@ -113,11 +120,10 @@ nav ul a {
   cursor: pointer;
   font-size: 22px;
   outline: none;
-  color: #0D276A;
 }
 
 .react-tabs__tab--selected {
-  border-bottom: 1px solid #0D276A;
+  border-bottom: 2px solid black;
   font-weight: 600;
 }
 
@@ -125,27 +131,6 @@ nav ul a {
   display: flex;
   gap: 25px;
   margin-bottom: 28px;
-}
-
-.addToCart {
-  bottom: -100%;
-  transition: all 0.4s ease;
-}
-
-.ProductCard:hover .addToCart {
-  bottom: 10px;
-}
-
-.categoryDropdown {
-  opacity: 0;
-  pointer-events: none;
-  transition: all 0.4s ease;
-}
-
-.blogCategory:hover .categoryDropdown {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateY(-20px);
 }
 
 .product-thumb .swiper-slide {
@@ -164,4 +149,92 @@ nav ul a {
 .product-thumbnail-image {
   width: 100px !important;
   height: 100px !important;
+}
+
+.product-thumb .swiper-wrapper {
+  justify-content: center;
+}
+
+.loginImgDiv {
+  position: relative;
+}
+
+.loginImgDiv::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+@media (min-width: 768px) {
+  .product-thumb .swiper-wrapper {
+    justify-content: start;
+  }
+
+  .featureCard:nth-child(even) {
+    margin-top: 30px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .addToCart {
+    bottom: -100%;
+    transition: all 0.4s ease;
+  }
+
+  .ProductCard:hover .addToCart {
+    bottom: 10px;
+  }
+}
+
+
+/* Admin */
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 10px;
+  transition: all 0.3s ease-out;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.nav-link:hover,
+.active-dropdown {
+  background: white;
+  color: #2F52DA;
+}
+
+.has-drop-down {
+  justify-content: space-between;
+
+  & span {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+}
+
+.list-table td,
+th {
+  padding: 8px;
+  border: 1px solid gray;
+}
+
+.list-table th {
+  background: #fff;
+}
+
+.list-table .icon {
+  margin: 0 8px;
+  cursor: pointer;
+  color: red;
+}
+
+.list-table .edit-icon {
+  color: rgb(14, 119, 194);
 }
