@@ -1,7 +1,22 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from "axios";
 
 const Signup = () => {
+  const navigate = useNavigate();
+  const handleSignUp = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const username = formData.get("username");
+    const email = formData.get("email");
+    const password = formData.get("password");
+    try {
+      await axios.post("http://localhost:8000/api/auth/register", { username, email, password });
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  }
   return (
     <section>
       <div className="flex relative">
@@ -16,14 +31,14 @@ const Signup = () => {
               </div>
             </div>
             <h2 className='text-lg font-bold'>Welcome to Jayram Handicraft Art Gallery</h2>
-            <form action="" className='flex flex-col pt-5 gap-2 text-black font-medium'>
+            <form onSubmit={handleSignUp} className='flex flex-col pt-5 gap-2 text-black font-medium'>
               <label htmlFor="username">Username</label>
               <input type="text" name="username" id='username' className='border rounded-sm p-1 outline-none text-gray-500' />
               <label htmlFor="email">Email</label>
               <input type="text" name="email" id='email' className='border rounded-sm p-1 outline-none text-gray-500' />
               <label htmlFor="password">Password</label>
-              <input type="password" name="password" id='email' className='border rounded-sm p-1 outline-none text-gray-500' />
-              <button className='bg-[#E64D3D] text-white py-2 px-4 rounded-sm hover:bg-[#b23e31]'>Signup</button>
+              <input type="password" name="password" id='password' className='border rounded-sm p-1 outline-none text-gray-500' />
+              <button type='submit' className='bg-[#E64D3D] text-white py-2 px-4 rounded-sm hover:bg-[#b23e31]'>Signup</button>
             </form>
             <div className='text-center mt-2'>
               <p>Already have an account? <Link to="/login" className='underline'> Login </Link></p>
