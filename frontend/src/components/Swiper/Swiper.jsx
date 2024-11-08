@@ -1,10 +1,27 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination, Autoplay } from 'swiper/modules';
+import axios from 'axios';
+import Loading from '../Loading/Loading';
 
 const Slider = () => {
+  const [sliders, setSliders] = useState([]);
+  useEffect(() => {
+    axios.get("http://localhost:8000/api/slider")
+      .then((res) => {
+        setSliders(res.data)
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }, [])
+  if (sliders.length == 0) {
+    return (
+      <Loading type='slider' />
+    )
+  }
   return (
     <Swiper className='banner-swiper'
       modules={[Pagination, Autoplay]}
@@ -16,21 +33,15 @@ const Slider = () => {
         disableOnInteraction: false
       }}
     >
-      <SwiperSlide>
-        <div className="swiper-image-wrapper md:h-[78vh]">
-          <img src="/images/sliderImg1.jpg" alt="" className='object-center' />
-        </div>
-      </SwiperSlide>
-      <SwiperSlide>
-        <div className="swiper-image-wrapper md:h-[78vh]">
-          <img src="/images/login.jpg" alt="" className='object-center' />
-        </div>
-      </SwiperSlide>
-      <SwiperSlide>
-        <div className="swiper-image-wrapper md:h-[78vh]">
-          <img src="/images/sliderImg3.jpg" alt="" />
-        </div>
-      </SwiperSlide>
+      {
+        sliders.map((slider, index) => (
+          <SwiperSlide key={index}>
+            <div className="swiper-image-wrapper md:h-[78vh]">
+              <img src={`http://localhost:8000/${slider.image}`} alt="slider-image" className='object-center' />
+            </div>
+          </SwiperSlide>
+        ))
+      }
     </Swiper>
   )
 }

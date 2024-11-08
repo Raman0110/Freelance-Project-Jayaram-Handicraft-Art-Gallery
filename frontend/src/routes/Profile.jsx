@@ -1,7 +1,18 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from "axios";
 
 const Profile = () => {
+  const navigate = useNavigate();
+  const handleLogout = async () => {
+    try {
+      await axios.post("http://localhost:8000/api/auth/logout", {}, { withCredentials: true });
+      navigate("/login");
+    } catch (error) {
+      console.log(error.response.data.message);
+    }
+  }
+
   return (
     <section className='bg-white'>
       <div className="container mx-auto">
@@ -13,7 +24,7 @@ const Profile = () => {
               <Link to="/profile/update">
                 <button className='bg-[#0D276A] p-2 rounded-md'>Update Profile</button>
               </Link>
-              <button className='bg-[#0D276A] p-2 rounded-md'>View Order</button>
+              <button className='bg-[#0D276A] p-2 rounded-md' onClick={handleLogout} >Logout</button>
             </div>
           </div>
           <div className="imgSec lg:w-1/2">

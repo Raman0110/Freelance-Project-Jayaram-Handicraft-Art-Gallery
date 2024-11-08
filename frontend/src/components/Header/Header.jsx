@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown, faCartShopping, faMagnifyingGlass, faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const Header = () => {
   const [nav, setNav] = useState(false);
@@ -13,6 +14,16 @@ const Header = () => {
   function setSearchBar() {
     setSearch(!search);
   }
+  const [categories, setCategories] = useState([]);
+  useEffect(() => {
+    axios.get("http://localhost:8000/api/category")
+      .then((res) => {
+        setCategories(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }, [])
   return (
     <>
       <div className='sticky top-0 z-50 bg-white'>
@@ -32,12 +43,12 @@ const Header = () => {
               </div>
               <div className="header-right">
                 <div className="flex gap-4">
-                  <Link to="/profile" className='flex gap-1'>
+                  {/* <Link to="/profile" className='flex gap-1'>
                     <FontAwesomeIcon icon={faUser} size='lg' className='cursor-pointer' /><span className='hidden md:block cursor-pointer'>Profile</span>
                   </Link>
                   <Link className='flex gap-1'>
                     <FontAwesomeIcon icon={faCartShopping} size='lg' className='cursor-pointer' /><span className='hidden md:block cursor-pointer'>Cart</span>
-                  </Link>
+                  </Link> */}
                   <FontAwesomeIcon icon={faMagnifyingGlass} size='lg' className='md:!hidden cursor-pointer' onClick={setSearchBar} />
                   <FontAwesomeIcon icon={faBars} size='lg' className=' md:!hidden cursor-pointer' onClick={setActive} />
                 </div>
@@ -59,11 +70,9 @@ const Header = () => {
                 <FontAwesomeIcon icon={faAngleDown} className='relative top-0.5 ml-2' />
               </Link>
               <ul className='dropDownMenu p-4 bg-white absolute flex flex-col gap-3 min-w-[200px] z-10 rounded-md'>
-                <li><Link to='/category'>Buddha</Link></li>
-                <li><Link to='/category'>Green Tara</Link></li>
-                <li><Link to='/category'>Manjushree</Link></li>
-                <li><Link to='/category'>White Tara</Link></li>
-                <li><Link to='/category'>Mandala</Link></li>
+                {categories.map((category, index) => (
+                  <li key={index}><Link to=''>{category.name}</Link></li>
+                ))}
               </ul>
             </li>
             <li><Link to='/shop'>Shop</Link></li>

@@ -33,6 +33,10 @@ import ViewSlider from './routes/Admin/ViewSlider.jsx';
 import AddSlider from './routes/Admin/AddSlider.jsx';
 import Messages from './routes/Admin/Messages.jsx';
 import Orders from './routes/Admin/Orders.jsx';
+import UpdateProductCata from './routes/Admin/UpdateProductCata.jsx';
+import UpdateBLog from './routes/Admin/UpdateBlog.jsx';
+import UpdateProduct from './routes/Admin/UpdateProduct.jsx';
+import UpdateSlider from './routes/Admin/UpdateSlider.jsx';
 config.autoAddCss = false
 
 const router = createBrowserRouter([
@@ -45,10 +49,10 @@ const router = createBrowserRouter([
       { path: "/about", element: <About /> },
       { path: "/shop", element: <Shop /> },
       { path: "/blogs", element: <Blog /> },
-      { path: "/product/:id", element: <SinglePage /> },
-      { path: "/blog/:id", element: <BlogSinglePage /> },
+      { path: "/product/:slug", element: <SinglePage /> },
+      { path: "/blog/:slug", element: <BlogSinglePage /> },
       { path: "/categories", element: <CategoryPage /> },
-      { path: "/category/:categoryName", element: <CategorySinglePage /> },
+      { path: "/category/:id", element: <CategorySinglePage /> },
       { path: "/profile", element: <Profile /> },
       { path: "/profile/update", element: <UpdateProfile /> },
     ],
@@ -70,10 +74,14 @@ const router = createBrowserRouter([
       { path: "blog", element: <ViewBlog /> },
       { path: "slider", element: <ViewSlider /> },
       { path: "slider/add", element: <AddSlider /> },
+      { path: "slider/update/:id", element: <UpdateSlider /> },
       { path: "product/category", element: <ViewProductCata /> },
       { path: "product/add", element: <AddProduct /> },
+      { path: "product/update/:id", element: <UpdateProduct /> },
       { path: "blog/add", element: <AddBlog /> },
+      { path: "blog/update/:id", element: <UpdateBLog /> },
       { path: "product/category/add", element: <AddProductCata /> },
+      { path: "product/category/update/:id", element: <UpdateProductCata /> },
       { path: "messages", element: <Messages /> },
       { path: "orders", element: <Orders /> },
     ]
