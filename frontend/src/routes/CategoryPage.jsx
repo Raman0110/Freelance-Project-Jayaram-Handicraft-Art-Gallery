@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import Loading from '../components/Loading/Loading';
 
 const CategoryPage = () => {
   const [categories, setCategories] = useState([]);
@@ -19,13 +20,32 @@ const CategoryPage = () => {
         console.log(err);
       });
   }, []);
-
+  if (categories.length == 0) {
+    return (
+      <section>
+        <Breadcrumb location='categories' />
+        <div className='container mx-auto'>
+          <div className="flex justify-between py-6">
+            <h2 className="bg-slate-600 w-24 h-6 rounded-full"></h2>
+            <p className="text-lg font-medium cursor-pointer">
+            </p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[18px]">
+            <Loading type='product' />
+            <Loading type='product' />
+            <Loading type='product' />
+            <Loading type='product' />
+          </div>
+        </div>
+      </section>
+    )
+  }
   return (
     <section>
       <Breadcrumb location="categories" />
       <div className="container mx-auto">
         {categories.map((category, index) => (
-          <div key={index}>
+          <div key={index} className='px-4'>
             <div className="flex justify-between py-6">
               <h2 className="text-2xl font-bold text-[#0D276A]">{category.name}</h2>
               <p className="text-lg font-medium cursor-pointer">

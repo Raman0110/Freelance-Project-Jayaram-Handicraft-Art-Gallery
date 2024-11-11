@@ -29,7 +29,24 @@ const UpdateProduct = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    axios.put(`http://localhost:8000/api/product/update/${id}`, formData)
+    const name = formData.get('name').trim();
+    const slug = formData.get('slug').trim();
+    const category = formData.get('category');
+    const size = formData.get('size').trim();
+    const description = formData.get('description').trim();
+    const availability = formData.get('availability').trim();
+    const featured = formData.get('featured');
+    const mostPopular = formData.get('mostPopular');
+
+    if (!name || !slug || !category || !size || !description || !availability || !featured || !mostPopular) {
+      toast.error("All fields are required", {
+        autoClose: 2000,
+        position: "top-center",
+        closeButton: false
+      });
+      return;
+    }
+    axios.put(`http://localhost:8000/api/product/update/${id}`, formData, { withCredentials: true })
       .then((res) => {
         navigate("/dashboard/product");
       })
@@ -39,11 +56,20 @@ const UpdateProduct = () => {
   }
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
+    if (name == "name") {
+      const generatedSlug = value.trim().split(" ").join("-").toLowerCase();
+      setProduct((prev) => ({
+        ...prev,
+        name: value,
+        slug: generatedSlug,
+      }));
+    }
     setProduct((prev) => ({
       ...prev,
       [name]: type === 'checkbox' ? checked : value,
     }));
   };
+
   return (
     <section className='px-14'>
       <h2 className='py-8 text-2xl font-bold text-center'>Update Product</h2>

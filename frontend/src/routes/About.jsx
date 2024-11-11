@@ -8,10 +8,10 @@ const About = () => {
         <Breadcrumb location='About' />
         <div className="flex gap-4 my-4 max-lg:flex-wrap max-lg:justify-center">
           <div className="image-sec max-sm:h-[300px] h-[400px] min-w-[300px] w-[300px]">
-            <img src="/images/reg1.jpg" alt="" className='h-full w-full max-sm:object-top object-cover rounded-xl border-4 border-gray-600' />
+            <img src="/images/reg1.jpg" alt="" loading='lazy' className='h-full w-full max-sm:object-top object-cover rounded-xl border-4 border-gray-600' />
           </div>
           <div className="image-sec max-sm:h-[300px] h-[400px] min-w-[300px] w-[300px]">
-            <img src="/images/reg2.jpg" alt="" className='h-full w-full object-cover rounded-xl border-4 max-sm:object-top border-gray-600' />
+            <img src="/images/reg2.jpg" alt="" loading='lazy' className='h-full w-full object-cover rounded-xl border-4 max-sm:object-top border-gray-600' />
           </div>
           <div className="text-sec max-sm:px-4">
             <h1 className='text-2xl max-sm:text-xl max-lg:text-center font-bold max-sm:py-2 pt-4'>Welcome To Jayram Handicraft Art Gallery</h1>

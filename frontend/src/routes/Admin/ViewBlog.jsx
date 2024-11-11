@@ -31,7 +31,7 @@ const ViewBlog = () => {
     setIsOpen(false);
   }
   const handleDelete = () => {
-    axios.delete(`http://localhost:8000/api/blog/delete/${blogToDelete._id}`)
+    axios.delete(`http://localhost:8000/api/blog/delete/${blogToDelete._id}`, { withCredentials: true })
       .then((res) => {
         closeModal();
         toast.success("Blog deleted successfully", {

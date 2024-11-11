@@ -74,7 +74,7 @@ const Category = () => {
           >
             {categories.map((category, index) => (
               <SwiperSlide key={index}>
-                <CategoryCard name={category.name} imgSrc={`http://localhost:8000/${category.image}`} />
+                <CategoryCard category={category} />
               </SwiperSlide>
             ))}
           </Swiper>

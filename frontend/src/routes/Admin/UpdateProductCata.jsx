@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
 
 const UpdateProductCata = () => {
@@ -20,9 +21,20 @@ const UpdateProductCata = () => {
   const handleUpdate = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
+    const name = formData.get('name').trim();
+    const slug = formData.get('slug').trim();
+
+    if (!name || !slug) {
+      toast.error("All fields are required", {
+        closeButton: false,
+        autoClose: 2000,
+        position: "top-center"
+      });
+      return;
+    }
     const active = e.target.active.checked ? true : false;
     formData.set('active', active.toString());
-    axios.put(`http://localhost:8000/api/category/update/${id}`, formData)
+    axios.put(`http://localhost:8000/api/category/update/${id}`, formData, { withCredentials: true })
       .then((res) => {
         navigate("/dashboard/product/category");
       })
@@ -32,6 +44,14 @@ const UpdateProductCata = () => {
   }
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
+    if (name == "name") {
+      const generatedSlug = value.trim().split(" ").join("-").toLowerCase();
+      setCategory((prev) => ({
+        ...prev,
+        name: value,
+        slug: generatedSlug,
+      }));
+    }
     setCategory((prev) => ({
       ...prev,
       [name]: type === 'checkbox' ? checked : value,

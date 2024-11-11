@@ -2,10 +2,10 @@ import Slider from "../models/slider-model.js";
 import fs from "fs";
 
 export const addSlider = async (req, res) => {
-  const { name, slug } = req.body;
+  const { name } = req.body;
   const image = req.file ? req.file.path : null;
   try {
-    await Slider.create({ name, image, slug });
+    await Slider.create({ name, image });
     res.status(201).json({ message: "Slider added successfully" });
   } catch (error) {
     console.error(error);
@@ -39,11 +39,11 @@ export const viewSliderById = async (req, res) => {
 
 export const updateSlider = async (req, res) => {
   const { id } = req.params;
-  const { name, slug } = req.body;
+  const { name } = req.body;
   const image = req.file ? req.file.path : null;
 
   try {
-    const updateData = { name, slug };
+    const updateData = { name };
     const updatedSlider = await Slider.findById(id);
     await Slider.findByIdAndUpdate(id, updateData, { new: true });
     if (!updatedSlider) {

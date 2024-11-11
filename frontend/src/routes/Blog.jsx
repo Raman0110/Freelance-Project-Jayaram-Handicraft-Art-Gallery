@@ -36,7 +36,7 @@ const Blog = () => {
     <section>
       <Breadcrumb location='Blogs' />
       <div className='container mx-auto my-4'>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[18px]">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 px-4">
           {blogs.map((blog, index) => (
             <Link to={`/blog/${blog.slug}`}>
               <BlogCard blog={blog} key={index} />

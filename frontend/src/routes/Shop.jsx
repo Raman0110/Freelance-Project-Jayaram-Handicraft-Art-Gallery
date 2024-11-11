@@ -7,6 +7,7 @@ import 'react-slidedown/lib/slidedown.css';
 import ProductCard from '../components/ProductCard/ProductCard';
 import axios from 'axios';
 import Loading from '../components/Loading/Loading';
+import { useLocation, useParams } from 'react-router-dom';
 
 const Shop = () => {
   const [isSizeOpen, setSizeOpen] = useState(true);
@@ -17,18 +18,22 @@ const Shop = () => {
   const [categories, setCategories] = useState([]);
 
   const [filter, setFilter] = useState({ category: [], size: "", availability: "" });
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const search = queryParams.get("search");
+
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const categoryQuery = filter.category.join(',');
     axios
-      .get(`http://localhost:8000/api/product/shop?category=${categoryQuery}&size=${filter.size}&availability=${filter.availability}`)
+      .get(`http://localhost:8000/api/product/shop?search=${search || ""}&category=${categoryQuery}&size=${filter.size}&availability=${filter.availability}`)
       .then((res) => {
         setProducts(res.data);
+        setLoading(false);
       })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [filter]);
+      .catch((err) => console.log(err));
+  }, [filter, search]);
 
   useEffect(() => {
     axios
@@ -62,7 +67,6 @@ const Shop = () => {
       return prev;
     });
   };
-
   return (
     <section className='py-4'>
       <Breadcrumb location='Shop' />
@@ -99,8 +103,9 @@ const Shop = () => {
                     <div key={index}>
                       <input
                         type="checkbox"
-                        className='mr-2'
+                        className="mr-2"
                         id={category._id}
+                        name="category"
                         value={category._id}
                         checked={filter.category.includes(category._id)}
                         onChange={handleFilterChange}
@@ -148,9 +153,21 @@ const Shop = () => {
             </div>
 
             <div className="products grid md:grid-cols-3 gap-3 grid-cols-1 min-[500px]:grid-cols-2">
-              {products.map((product, index) => (
-                <ProductCard product={product} key={index} />
-              ))}
+              {loading ?
+                <>
+                  <Loading type='product' />
+                  <Loading type='product' />
+                  <Loading type='product' />
+                </> :
+                <>{
+                  products.length == 0 ?
+                    <p className='col-span-full font-medium text-2xl text-center'>Sorry! No Products Found for your search "{search}"</p> :
+                    products.map((product, index) => (
+                      <ProductCard product={product} key={index} />
+                    ))
+                }
+                </>
+              }
             </div>
           </div>
         </div>

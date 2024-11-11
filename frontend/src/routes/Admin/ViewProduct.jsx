@@ -38,7 +38,7 @@ const ViewProduct = () => {
     setProductToDelete(null);
   }
   const handleDelete = () => {
-    axios.delete(`http://localhost:8000/api/product/delete/${productToDelete._id}`)
+    axios.delete(`http://localhost:8000/api/product/delete/${productToDelete._id}`, { withCredentials: true })
       .then((res) => {
         closeModal();
         navigate("/dashboard/product");

@@ -42,10 +42,9 @@ const ViewProductCata = () => {
   }, [categories]);
 
   const handleDelete = () => {
-    axios.delete(`http://localhost:8000/api/category/delete/${categoryToDelete._id}`)
+    axios.delete(`http://localhost:8000/api/category/delete/${categoryToDelete._id}`, { withCredentials: true })
       .then((res) => {
         closeModal();
-        navigate("/dashboard/product/category");
         toast.success("Category deleted successfully", {
           autoClose: 2000,
           position: "top-center",

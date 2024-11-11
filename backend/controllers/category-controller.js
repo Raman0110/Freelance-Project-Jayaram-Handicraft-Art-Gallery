@@ -78,4 +78,17 @@ export const getCategoryWithProduct = async (req, res) => {
     res.status(500).json({ message: "Unable to find categories" });
   }
 };
+export const getCategoryProductWithSlug = async (req, res) => {
+  const { slug } = req.params;
+  try {
+    const category = await Category.findOne({ slug });
+    const products = await Product.find({ category: category._id });
+    res.status(200).json({ category, products });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Unable to find categories" });
+  }
+};
+
+
 

@@ -39,6 +39,12 @@ const Loading = ({ type }) => {
         </>
       );
       break;
+
+    default:
+      return (
+        <div className="loading h-16 w-16 rounded-full border-8 border-gray-400 border-t-[#0D276A] animate-spin" />
+      );
+      break;
   }
 }
 

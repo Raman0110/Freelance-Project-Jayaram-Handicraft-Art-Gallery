@@ -1,13 +1,24 @@
 import React, { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown, faCartShopping, faMagnifyingGlass, faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
-import { faUser } from "@fortawesome/free-regular-svg-icons";
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const Header = () => {
   const [nav, setNav] = useState(false);
   const [search, setSearch] = useState(false);
+  const [searchInput, setSearchInput] = useState("");
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const searchQ = queryParams.get("search");
+  useEffect(() => {
+    if (searchQ) {
+      setSearchInput(searchQ);
+    }
+  }, [searchQ]);
+  function handleSearchChange(e) {
+    setSearchInput(e.target.value)
+  }
   function setActive() {
     setNav(!nav);
   }
@@ -23,7 +34,14 @@ const Header = () => {
       .catch((err) => {
         console.log(err);
       })
-  }, [])
+  }, []);
+  const navigate = useNavigate();
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const searchQuery = formData.get('search');
+    navigate(`/shop?search=${searchQuery}`);
+  };
   return (
     <>
       <div className='sticky top-0 z-50 bg-white'>
@@ -31,14 +49,16 @@ const Header = () => {
           <div className="container mx-auto">
             <div className="flex justify-between items-center">
               <div className="header-left flex gap-8 items-center">
-                <div className='w-[80px]'>
-                  <img src="/images/logo.PNG" alt="logo" />
+                <div>
+                  <img src="/images/small.png" alt="logo" />
                 </div>
                 <div className="search-bar relative hidden md:block">
-                  <input type="text" name="search" id="" className='border outline-[#0D276A] p-2 rounded-full w-80' placeholder='Search Product..' />
-                  <div className="searchIcon bg-[#0D276A] h-8 w-8 rounded-full flex items-center justify-center absolute right-1 top-[0.3rem] cursor-pointer">
-                    <FontAwesomeIcon icon={faMagnifyingGlass} className='text-white' />
-                  </div>
+                  <form onSubmit={handleSearch}>
+                    <input type="text" onChange={handleSearchChange} value={searchInput} name="search" id="search" className='border outline-[#0D276A] p-2 rounded-full w-80' placeholder='Search Product..' />
+                    <button className="searchIcon bg-[#0D276A] h-8 w-8 rounded-full flex items-center justify-center absolute right-1 top-[0.3rem] cursor-pointer">
+                      <FontAwesomeIcon icon={faMagnifyingGlass} className='text-white' />
+                    </button>
+                  </form>
                 </div>
               </div>
               <div className="header-right">
@@ -56,8 +76,10 @@ const Header = () => {
             </div>
           </div>
           <div className={`searchBar md:hidden absolute z-10 ${search ? 'activesearchBar' : ''}`}>
-            <input type="text" name="search" className='p-4 outline-none w-[300px] ' />
-            <button className='bg-[#1e1e1e] p-4 text-white'>Search</button>
+            <form onSubmit={handleSearch}>
+              <input type="text" name="search" onChange={handleSearchChange} value={searchInput} className='p-4 outline-none w-[300px] ' />
+              <button className='bg-[#1e1e1e] p-4 text-white'>Search</button>
+            </form>
           </div>
         </header>
         <nav className='hidden md:block font-medium headerNav'>
@@ -71,7 +93,11 @@ const Header = () => {
               </Link>
               <ul className='dropDownMenu p-4 bg-white absolute flex flex-col gap-3 min-w-[200px] z-10 rounded-md'>
                 {categories.map((category, index) => (
-                  <li key={index}><Link to=''>{category.name}</Link></li>
+                  <li key={index}>
+                    <Link to={`/category/${category.slug}`}>
+                      {category.name}
+                    </Link>
+                  </li>
                 ))}
               </ul>
             </li>
@@ -86,12 +112,12 @@ const Header = () => {
           <FontAwesomeIcon icon={faTimes} onClick={setActive} color='white' className='text-end cursor-pointer text-2xl' />
         </div>
         <ul className='p-4 flex flex-col gap-4 mt-6'>
-          <li><Link to='/'>Home</Link></li>
-          <li><Link to='/about'>About</Link></li>
-          <li><Link to='/category'>Category</Link></li>
-          <li><Link to='/shop'>Shop</Link></li>
-          <li><Link to='/blog'>Blog</Link></li>
-          <li><Link to='/contact'>Contact</Link></li>
+          <li><Link onClick={setActive} to='/' >Home</Link></li>
+          <li><Link onClick={setActive} to='/about'>About</Link></li>
+          <li><Link onClick={setActive} to='/categories'>Category</Link></li>
+          <li><Link onClick={setActive} to='/shop'>Shop</Link></li>
+          <li><Link onClick={setActive} to='/blogs'>Blog</Link></li>
+          <li><Link onClick={setActive} to='/contact'>Contact</Link></li>
         </ul>
       </aside>
 

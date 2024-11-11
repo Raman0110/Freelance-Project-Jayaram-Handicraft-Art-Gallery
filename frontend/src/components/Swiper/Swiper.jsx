@@ -37,7 +37,7 @@ const Slider = () => {
         sliders.map((slider, index) => (
           <SwiperSlide key={index}>
             <div className="swiper-image-wrapper md:h-[78vh]">
-              <img src={`http://localhost:8000/${slider.image}`} alt="slider-image" className='object-center' />
+              <img src={`http://localhost:8000/${slider.image}`} alt="slider-image" className='object-center' loading='lazy' />
             </div>
           </SwiperSlide>
         ))

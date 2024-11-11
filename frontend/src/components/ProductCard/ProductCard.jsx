@@ -2,10 +2,10 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 const ProductCard = ({ product }) => {
   return (
-    <div className='ProductCard shadow-md rounded-lg bg-white'>
+    <div className='ProductCard shadow-md rounded-lg bg-white hover:shadow-2xl transition-shadow duration-200 ease-in'>
       <div className="productCardImg w-[90%] mx-auto h-[300px] pt-3 relative overflow-hidden md:h-[320px]">
         <Link to={`/product/${product.slug}`}>
-          <img src={`http://localhost:8000/${product.image}`} alt={product.name} className='w-full h-full object-content' />
+          <img src={`http://localhost:8000/uploads/products/${product.image}`} alt={product.name} className='w-full h-full object-content' loading='lazy' />
         </Link>
         {/* <a href="" className="addToCart w-11/12 mx-auto block absolute text-center rounded-full py-2 uppercase backdrop-blur bottom-2 left-2 text-white border border-white hover:bg-[#0D276A]">
           Get Thangka <FontAwesomeIcon icon={faEnvelope} />

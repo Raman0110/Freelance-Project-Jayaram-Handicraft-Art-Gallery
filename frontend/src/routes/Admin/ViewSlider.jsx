@@ -42,7 +42,7 @@ const ViewSlider = () => {
   const navigate = useNavigate();
 
   const handleDelete = () => {
-    axios.delete(`http://localhost:8000/api/slider/delete/${sliderToDelete._id}`)
+    axios.delete(`http://localhost:8000/api/slider/delete/${sliderToDelete._id}`, { withCredentials: true })
       .then((res) => {
         closeModal();
         navigate("/dashboard/slider");

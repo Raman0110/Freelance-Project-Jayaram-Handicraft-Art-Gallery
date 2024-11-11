@@ -9,7 +9,6 @@ const BlogSection = () => {
     axios.get("http://localhost:8000/api/blog")
       .then((res) => {
         setBlogs(res.data);
-        console.log(res.data);
 
       })
       .catch((err) => {
@@ -27,7 +26,7 @@ const BlogSection = () => {
               <div className="bigBlogCard flex w-full gap-2 xl:gap-4 xl:flex-col  xl:row-span-2">
                 <div className="blogImg overflow-hidden h-[200px] min-w-[200px] xl:h-[350px] w-[200px] xl:w-full">
                   <Link to={`/blog/${blog.slug}`}>
-                    <img src={`http://localhost:8000/${blog.image}`} alt={blog.name} className=' cursor-pointer hover:scale-[110%] transition-transform duration-200 ease-out h-full w-full object-cover' />
+                    <img src={`http://localhost:8000/${blog.image}`} loading='lazy' alt={blog.name} className=' cursor-pointer hover:scale-[110%] transition-transform duration-200 ease-out h-full w-full object-cover' />
                   </Link>
                 </div>
                 <div className="blogDesc">
@@ -42,7 +41,7 @@ const BlogSection = () => {
                 <div className="smallBlogCard flex gap-2">
                   <div className="blogImg overflow-hidden h-[200px] min-w-[200px] w-[200px]">
                     <Link to={`/blog/${blog.slug}`}>
-                      <img src={`http://localhost:8000/${blog.image}`} alt={blog.name} className='cursor-pointer hover:scale-[110%] transition-transform duration-200 ease-out h-full w-full object-cover' />
+                      <img src={`http://localhost:8000/${blog.image}`} loading='lazy' alt={blog.name} className='cursor-pointer hover:scale-[110%] transition-transform duration-200 ease-out h-full w-full object-cover' />
                     </Link>
                   </div>
                   <div className="blogDesc">

@@ -13,7 +13,7 @@ const Sidebar = () => {
   return (
     <aside className='bg-[#2F52DA] h-screen text-white p-4 overflow-auto w-[20vw] sticky top-0'>
       <div className="logo">
-        <img src="/images/logo.PNG" alt="" className='w-[80px] mx-auto' />
+        <img src="/images/small.png" alt="" className='mx-auto' />
       </div>
       <nav className='pt-8'>
         <ul>
@@ -67,7 +67,6 @@ const Sidebar = () => {
               }
             </SlideDown>
           </li>
-          <li className='mb-2'><Link to="/dashboard/orders" className='nav-link '> <FontAwesomeIcon icon={faBasketShopping} /> Order</Link></li>
           <li className='mb-2'>
             <a className={`nav-link has-drop-down ${openDropdown == "Blog" ? 'active-dropdown' : ''}`} onClick={() => toggleDropdown("Blog")}>
               <span>

@@ -19,6 +19,14 @@ const UpdateBLog = () => {
   }, [id]);
   const handleChange = (e) => {
     const { name, value } = e.target;
+    if (name == "name") {
+      const generatedSlug = value.trim().split(" ").join("-").toLowerCase();
+      setBlog((prev) => ({
+        ...prev,
+        name: value,
+        slug: generatedSlug,
+      }));
+    }
     setBlog((prev) => ({
       ...prev,
       [name]: value,
@@ -27,7 +35,19 @@ const UpdateBLog = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    axios.put(`http://localhost:8000/api/blog/update/${id}`, formData)
+    const name = formData.get("name").trim();
+    const slug = formData.get("slug").trim();
+    const description = formData.get("description").trim();
+
+    if (!name || !slug || !description) {
+      toast.error("All fields are required", {
+        autoClose: 2000,
+        position: "top-center",
+        closeButton: false
+      });
+      return;
+    }
+    axios.put(`http://localhost:8000/api/blog/update/${id}`, formData, { withCredentials: true })
       .then((res) => {
         navigate("/dashboard/blog");
       })

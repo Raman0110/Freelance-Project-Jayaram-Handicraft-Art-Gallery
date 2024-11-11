@@ -238,3 +238,10 @@ th {
 .list-table .edit-icon {
   color: rgb(14, 119, 194);
 }
+
+
+@media (max-width: 600px) {
+  .ReactModal__Content {
+    width: 90% !important;
+  }
+}

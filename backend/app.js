@@ -9,10 +9,11 @@ import blogRoute from "./routes/blog-route.js";
 import sliderRoute from "./routes/slider-route.js";
 import path from "path";
 import url from "url";
+import messageRoute from "./routes/message-route.js";
 
 const app = express();
-const __filename = url.fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+export const __filename = url.fileURLToPath(import.meta.url);
+export const __dirname = path.dirname(__filename);
 app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 connectDB();
 app.use(cookieParser());
@@ -24,6 +25,7 @@ app.use('/api/product', productRoute);
 app.use('/api/category', categoryRoute);
 app.use('/api/blog', blogRoute);
 app.use('/api/slider', sliderRoute);
+app.use('/api/message', messageRoute);
 
 
 app.listen(8000, () => {

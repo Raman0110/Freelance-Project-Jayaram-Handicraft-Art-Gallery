@@ -13,8 +13,9 @@ const Login = () => {
     const password = formData.get("password");
     try {
       await axios.post("http://localhost:8000/api/auth/login", { email, password }, { withCredentials: true });
-      navigate("/");
+      navigate("/dashboard");
     } catch (error) {
+      e.target.reset();
       toast.error(error.response.data.message, {
         closeButton: false,
         position: "top-center",
@@ -42,12 +43,8 @@ const Login = () => {
               <input type="text" name="email" id='email' className='border rounded-sm p-1 outline-none text-gray-500' />
               <label htmlFor="password">Password</label>
               <input type="password" name="password" id='password' className='border rounded-sm p-1 outline-none text-gray-500' />
-              <a href="">Forget Password?</a>
               <button type="submit" className='bg-[#E64D3D] block w-full text-white py-2 px-4 rounded-sm hover:bg-[#b23e31]'>Login</button>
             </form>
-            <div className='text-center mt-2'>
-              <p>Don't have an account? <Link to="/signup" className='underline'> Signup </Link></p>
-            </div>
           </div>
         </div>
 

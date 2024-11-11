@@ -16,8 +16,8 @@ const UpdateSlider = () => {
   }, [id])
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setSlider((prevSlider) => ({
-      ...prevSlider,
+    setSlider((prev) => ({
+      ...prev,
       [name]: value,
     }));
   };
@@ -25,7 +25,19 @@ const UpdateSlider = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    axios.put(`http://localhost:8000/api/slider/update/${id}`, formData)
+    const name = formData.get("name").trim();
+
+    if (!name || !slug) {
+      toast.error("All fields are required", {
+        autoClose: 2000,
+        position: "top-center",
+        closeButton: false
+      });
+      return;
+    }
+
+
+    axios.put(`http://localhost:8000/api/slider/update/${id}`, formData, { withCredentials: true })
       .then((res) => {
         navigate("/dashboard/slider");
       })
@@ -39,9 +51,6 @@ const UpdateSlider = () => {
       <form className='flex flex-col gap-4 text-lg font-medium' enctype="multipart/form-data" onSubmit={handleSubmit}>
         <label htmlFor="name">Product Name</label>
         <input type="text" name='name' id='name' className='p-1 outline-none text-black rounded-md' value={slider.name} onChange={handleChange} />
-
-        <label htmlFor="slug">Slug</label>
-        <input type="text" name='slug' id='slug' className='p-1 outline-none text-black rounded-md' value={slider.slug} onChange={handleChange} />
 
         <label htmlFor="image">Upload Image</label>
         <input type="file" name="image" id="image" />

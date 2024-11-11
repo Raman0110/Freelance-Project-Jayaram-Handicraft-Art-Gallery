@@ -18,9 +18,6 @@ import SinglePage from './routes/SinglePage.jsx';
 import BlogSinglePage from './routes/BlogSinglePage.jsx';
 import CategoryPage from './routes/CategoryPage.jsx';
 import CategorySinglePage from './routes/CategorySinglePage.jsx';
-import Signup from './routes/Signup.jsx';
-import Profile from './routes/Profile.jsx';
-import UpdateProfile from './routes/UpdateProfile.jsx';
 import ViewProduct from './routes/Admin/ViewProduct.jsx';
 import DashboardLayout from './routes/Admin/DashboardLayout.jsx';
 import Dashboard from './routes/Admin/Dashboard.jsx';
@@ -37,6 +34,9 @@ import UpdateProductCata from './routes/Admin/UpdateProductCata.jsx';
 import UpdateBLog from './routes/Admin/UpdateBlog.jsx';
 import UpdateProduct from './routes/Admin/UpdateProduct.jsx';
 import UpdateSlider from './routes/Admin/UpdateSlider.jsx';
+import Profile from './routes/Admin/Profile.jsx';
+import UpdateProfile from './routes/Admin/UpdateProfile.jsx';
+import NotFound from './routes/NotFound.jsx';
 config.autoAddCss = false
 
 const router = createBrowserRouter([
@@ -52,9 +52,8 @@ const router = createBrowserRouter([
       { path: "/product/:slug", element: <SinglePage /> },
       { path: "/blog/:slug", element: <BlogSinglePage /> },
       { path: "/categories", element: <CategoryPage /> },
-      { path: "/category/:id", element: <CategorySinglePage /> },
-      { path: "/profile", element: <Profile /> },
-      { path: "/profile/update", element: <UpdateProfile /> },
+      { path: "/category/:slug", element: <CategorySinglePage /> },
+      { path: "*", element: <NotFound /> },
     ],
   },
   {
@@ -62,14 +61,12 @@ const router = createBrowserRouter([
     element: <Login />
   },
   {
-    path: "/signup",
-    element: <Signup />
-  },
-  {
     path: "/dashboard",
     element: <DashboardLayout />,
     children: [
       { path: "", element: <Dashboard /> },
+      { path: "profile", element: <Profile /> },
+      { path: "profile/update/:id", element: <UpdateProfile /> },
       { path: "product", element: <ViewProduct /> },
       { path: "blog", element: <ViewBlog /> },
       { path: "slider", element: <ViewSlider /> },
