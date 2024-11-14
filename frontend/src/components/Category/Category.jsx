@@ -11,7 +11,7 @@ import Loading from '../Loading/Loading';
 const Category = () => {
   const [categories, setCategories] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:8000/api/category")
+    axios.get("http://192.168.1.71:8000/api/category")
       .then((res) => {
         setCategories(res.data);
       })

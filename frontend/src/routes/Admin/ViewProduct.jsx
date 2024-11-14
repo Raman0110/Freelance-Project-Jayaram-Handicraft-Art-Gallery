@@ -21,7 +21,7 @@ const ViewProduct = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [productToDelete, setProductToDelete] = useState(null);
   useEffect(() => {
-    axios.get("http://localhost:8000/api/product")
+    axios.get("http://192.168.1.71:8000/api/product")
       .then((res) => {
         setProducts(res.data);
       })
@@ -38,7 +38,7 @@ const ViewProduct = () => {
     setProductToDelete(null);
   }
   const handleDelete = () => {
-    axios.delete(`http://localhost:8000/api/product/delete/${productToDelete._id}`, { withCredentials: true })
+    axios.delete(`http://192.168.1.71:8000/api/product/delete/${productToDelete._id}`, { withCredentials: true })
       .then((res) => {
         closeModal();
         navigate("/dashboard/product");

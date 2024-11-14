@@ -28,7 +28,7 @@ const AddProductCata = () => {
     formData.set('active', active.toString());
 
     try {
-      await axios.post("http://localhost:8000/api/category/add", formData, { withCredentials: true });
+      await axios.post("http://192.168.1.71:8000/api/category/add", formData, { withCredentials: true });
       toast.success("Category added successfully", {
         closeButton: false,
         autoClose: 2000,

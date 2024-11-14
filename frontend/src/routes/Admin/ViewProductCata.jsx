@@ -32,7 +32,7 @@ const ViewProductCata = () => {
     setCategoryToDelete(null);
   }
   useEffect(() => {
-    axios.get("http://localhost:8000/api/category")
+    axios.get("http://192.168.1.71:8000/api/category")
       .then((res) => {
         setCategories(res.data);
       })
@@ -42,7 +42,7 @@ const ViewProductCata = () => {
   }, [categories]);
 
   const handleDelete = () => {
-    axios.delete(`http://localhost:8000/api/category/delete/${categoryToDelete._id}`, { withCredentials: true })
+    axios.delete(`http://192.168.1.71:8000/api/category/delete/${categoryToDelete._id}`, { withCredentials: true })
       .then((res) => {
         closeModal();
         toast.success("Category deleted successfully", {

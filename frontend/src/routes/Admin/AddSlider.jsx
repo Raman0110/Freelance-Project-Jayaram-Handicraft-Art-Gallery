@@ -10,10 +10,9 @@ const AddSlider = () => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const name = formData.get("name").trim();
-    const slug = formData.get("slug").trim();
     const image = formData.get("image");
 
-    if (!name || !slug || !image) {
+    if (!name || !image) {
       toast.error("All fields are required, including the image upload", {
         autoClose: 2000,
         position: "top-center",
@@ -23,7 +22,7 @@ const AddSlider = () => {
     }
 
     try {
-      axios.post("http://localhost:8000/api/slider/add", formData, { withCredentials: true });
+      axios.post("http://192.168.1.71:8000/api/slider/add", formData, { withCredentials: true });
       toast.success("Slider Image added successfully", {
         position: "top-center",
         autoClose: 2000,

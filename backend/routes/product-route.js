@@ -5,15 +5,14 @@ import verifyAuth from "../middleware/verify-auth.js";
 
 const router = express.Router();
 
-// const storage = multer.diskStorage({
-//   destination: function (req, file, cb) {
-//     return cb(null, "./uploads/products");
-//   },
-//   filename: function (req, file, cb) {
-//     return cb(null, `${Date.now()}-${file.originalname}`);
-//   },
-// })
-const storage = multer.memoryStorage();
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    return cb(null, "./uploads/products");
+  },
+  filename: function (req, file, cb) {
+    return cb(null, `${Date.now()}-${file.originalname}`);
+  },
+})
 
 const upload = multer({ storage });
 

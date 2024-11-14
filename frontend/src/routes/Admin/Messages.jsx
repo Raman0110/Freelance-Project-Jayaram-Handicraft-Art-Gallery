@@ -50,7 +50,7 @@ const Messages = () => {
     setViewOpen(false);
   }
   useEffect(() => {
-    axios.get("http://localhost:8000/api/message")
+    axios.get("http://192.168.1.71:8000/api/message")
       .then((res) => {
         setMessages(res.data)
       })
@@ -60,7 +60,7 @@ const Messages = () => {
   }, [messages]);
 
   const handleDelete = () => {
-    axios.delete(`http://localhost:8000/api/message/delete/${messageToDelete._id}`)
+    axios.delete(`http://192.168.1.71:8000/api/message/delete/${messageToDelete._id}`)
       .then((res) => {
         setMessages(messages.filter((message) => message._id !== messageToDelete._id));
         closeModal();

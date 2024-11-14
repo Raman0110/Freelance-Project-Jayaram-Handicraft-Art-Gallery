@@ -5,7 +5,7 @@ import axios from "axios";
 const Profile = () => {
   const [admin, setAdmin] = useState({});
   useEffect(() => {
-    axios.get("http://localhost:8000/api/auth/user")
+    axios.get("http://192.168.1.71:8000/api/auth/user")
       .then((res) => {
         setAdmin(res.data[0]);
       })

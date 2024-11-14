@@ -24,8 +24,7 @@ const Loading = ({ type }) => {
       return (
         <>
           <div className='categoryCard animate-pulse '>
-            <div className="categoryCardImg rounded-full w-[130px] h-[130px] mx-auto mt-4 bg-slate-600">
-            </div>
+            <div className="rounded-full w-[130px] h-[130px] mx-auto mt-4 bg-slate-600" />
             <div className='bg-slate-600 w-[50%] h-4 rounded-full mt-2 mx-auto'></div>
           </div>
         </>

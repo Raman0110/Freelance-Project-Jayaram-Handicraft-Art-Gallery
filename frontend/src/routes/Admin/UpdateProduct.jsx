@@ -6,7 +6,7 @@ const UpdateProduct = () => {
   const { id } = useParams();
   const [product, setProduct] = useState([]);
   useEffect(() => {
-    axios.get(`http://localhost:8000/api/product/${id}`)
+    axios.get(`http://192.168.1.71:8000/api/product/${id}`)
       .then((res) => {
         setProduct(res.data);
       })
@@ -17,7 +17,7 @@ const UpdateProduct = () => {
 
   const [categories, setCategories] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:8000/api/category")
+    axios.get("http://192.168.1.71:8000/api/category")
       .then((res) => {
         setCategories(res.data);
       })
@@ -46,7 +46,7 @@ const UpdateProduct = () => {
       });
       return;
     }
-    axios.put(`http://localhost:8000/api/product/update/${id}`, formData, { withCredentials: true })
+    axios.put(`http://192.168.1.71:8000/api/product/update/${id}`, formData, { withCredentials: true })
       .then((res) => {
         navigate("/dashboard/product");
       })
@@ -81,9 +81,9 @@ const UpdateProduct = () => {
         <input type="text" name='slug' id='slug' onChange={handleChange} value={product.slug} className='p-1 outline-none text-black rounded-md' />
 
         <label htmlFor="category">Category</label>
-        <select name="category" id="category" className='outline-none'>
+        <select name="category" id="category" className='outline-none' value={product?.category?._id}>
           {categories.map((category, index) => (
-            <option value={`${category._id}`} key={index}>{category.name}</option>
+            <option value={`${category._id}`} key={index} >{category.name}</option>
           ))}
         </select>
 
@@ -98,13 +98,13 @@ const UpdateProduct = () => {
 
         <label htmlFor="image">Upload Image</label>
         <input type="file" name="image" id="image" />
-        <img src={`http://localhost:8000/${product.image}`} alt="unable to load image" width="250px" />
+        <img src={`http://192.168.1.71:8000/${product.image}`} alt="unable to load image" width="250px" />
 
         <label htmlFor="thumbnails">Upload Thumbnails</label>
         <input type="file" name="thumbnails" id="thumbnails" multiple />
         <div className="flex gap-4">
           {product.thumbnails && product.thumbnails.map((thumbnail, index) => (
-            <img src={`http://localhost:8000/${thumbnail}`} key={index} alt="unable to load image" width="250px" />
+            <img src={`http://192.168.1.71:8000/${thumbnail}`} key={index} alt="unable to load image" width="250px" />
           ))}
         </div>
         <label htmlFor="featured">Featured</label>

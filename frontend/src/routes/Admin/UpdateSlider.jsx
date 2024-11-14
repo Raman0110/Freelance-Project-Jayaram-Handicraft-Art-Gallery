@@ -6,7 +6,7 @@ const UpdateSlider = () => {
   const { id } = useParams();
   const [slider, setSlider] = useState([]);
   useEffect(() => {
-    axios.get(`http://localhost:8000/api/slider/${id}`)
+    axios.get(`http://192.168.1.71:8000/api/slider/${id}`)
       .then((res) => {
         setSlider(res.data);
       })
@@ -37,7 +37,7 @@ const UpdateSlider = () => {
     }
 
 
-    axios.put(`http://localhost:8000/api/slider/update/${id}`, formData, { withCredentials: true })
+    axios.put(`http://192.168.1.71:8000/api/slider/update/${id}`, formData, { withCredentials: true })
       .then((res) => {
         navigate("/dashboard/slider");
       })
@@ -55,7 +55,7 @@ const UpdateSlider = () => {
         <label htmlFor="image">Upload Image</label>
         <input type="file" name="image" id="image" />
 
-        <img src={`http://localhost:8000/${slider.image}`} alt="unable to load image" width="250px" />
+        <img src={`http://192.168.1.71:8000/${slider.image}`} alt="unable to load image" width="250px" />
         <button className='bg-[#0D276A] text-white mt-5 p-3 rounded-md' type='submit' >Update Product</button>
       </form>
     </section>

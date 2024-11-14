@@ -31,7 +31,7 @@ const ViewSlider = () => {
   }
 
   useEffect(() => {
-    axios.get("http://localhost:8000/api/slider")
+    axios.get("http://192.168.1.71:8000/api/slider")
       .then((res) => {
         setSliders(res.data);
       })
@@ -42,7 +42,7 @@ const ViewSlider = () => {
   const navigate = useNavigate();
 
   const handleDelete = () => {
-    axios.delete(`http://localhost:8000/api/slider/delete/${sliderToDelete._id}`, { withCredentials: true })
+    axios.delete(`http://192.168.1.71:8000/api/slider/delete/${sliderToDelete._id}`, { withCredentials: true })
       .then((res) => {
         closeModal();
         navigate("/dashboard/slider");

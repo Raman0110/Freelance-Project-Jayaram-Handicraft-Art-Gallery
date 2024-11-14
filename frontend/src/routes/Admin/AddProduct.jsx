@@ -29,7 +29,7 @@ const AddProduct = () => {
     }
 
     try {
-      await axios.post("http://localhost:8000/api/product/add", formData, { headers: { "Content-Type": "multipart/form-data" }, withCredentials: true });
+      await axios.post("http://192.168.1.71:8000/api/product/add", formData, { headers: { "Content-Type": "multipart/form-data" }, withCredentials: true });
       toast.success("Product added successfully", {
         autoClose: 2000,
         position: "top-center",
@@ -49,7 +49,7 @@ const AddProduct = () => {
   }
   const [categories, setCategories] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:8000/api/category")
+    axios.get("http://192.168.1.71:8000/api/category")
       .then((res) => {
         setCategories(res.data);
         console.log(res.data);

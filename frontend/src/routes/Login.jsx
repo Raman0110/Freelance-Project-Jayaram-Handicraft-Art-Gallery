@@ -12,7 +12,7 @@ const Login = () => {
     const email = formData.get("email");
     const password = formData.get("password");
     try {
-      await axios.post("http://localhost:8000/api/auth/login", { email, password }, { withCredentials: true });
+      await axios.post("http://192.168.1.71:8000/api/auth/login", { email, password }, { withCredentials: true });
       navigate("/dashboard");
     } catch (error) {
       e.target.reset();

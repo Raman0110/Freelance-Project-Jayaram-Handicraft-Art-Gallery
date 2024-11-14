@@ -24,7 +24,7 @@ const AddBlog = () => {
     }
 
     try {
-      await axios.post("http://localhost:8000/api/blog/add", formData, { withCredentials: true });
+      await axios.post("http://192.168.1.71:8000/api/blog/add", formData, { withCredentials: true });
       navigate("/dashboard/blog");
       toast.success("Blog added successfully", {
         autoClose: 2000,

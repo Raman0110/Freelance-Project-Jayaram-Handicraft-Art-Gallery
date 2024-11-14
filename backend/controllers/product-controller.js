@@ -2,7 +2,6 @@ import Product from "../models/product-model.js";
 import fs from "fs";
 import nodeMailer from "nodemailer";
 import { __dirname, __filename } from "../app.js";
-import sharp from "sharp";
 
 export const getProduct = async (req, res) => {
   try {
@@ -36,95 +35,20 @@ export const getProductBySlug = async (req, res) => {
   }
 }
 
-// export const addProduct = async (req, res) => {
-//   const { name, size, availability, description, category, slug, featured, mostPopular } = req.body;
-//   const image = req.files?.image ? req.files.image[0].path : null;
-//   const thumbnails = req.files?.thumbnails
-//     ? req.files.thumbnails.map(file => file.path)
-//     : [];
-//   try {
-//     const newProduct = await Product.create({ name, size, availability, description, image, category, slug, featured, mostPopular, thumbnails });
-//     res.status(201).json(newProduct);
-//   } catch (error) {
-//     console.log(error);
-//     res.status(500).json({ message: "Unable to add product" });
-//   }
-// }
-
 export const addProduct = async (req, res) => {
   const { name, size, availability, description, category, slug, featured, mostPopular } = req.body;
-
-  // Handling uploaded files
-  const image = req.files?.image ? req.files.image[0] : null;
-  const thumbnails = req.files?.thumbnails ? req.files.thumbnails : [];
-
-  if (!image) {
-    return res.status(400).json({ message: "Image is required" });
-  }
-  const imageName = `${Date.now()}-${image.originalname}`;
-  const imagePath = `./uploads/products/${imageName}`;
-  const imageThumbnailPath = `./uploads/products/thumbnails/${imageName}`;
+  const image = req.files?.image ? req.files.image[0].path : null;
+  const thumbnails = req.files?.thumbnails
+    ? req.files.thumbnails.map(file => file.path)
+    : [];
   try {
-    // Resize the main image using sharp
-    const resizedImageBuffer = await sharp(image.buffer)
-      .resize(280, 320, { fit: sharp.fit.inside, withoutEnlargement: true }) // Resize to 280x320
-      .png({ quality: 100, compressionLevel: 0, interlace: true })
-      .sharpen()
-      .toBuffer();
-    const resizedImageThumbnailBuffer = await sharp(image.buffer)
-      .resize(100, 100, { fit: sharp.fit.inside, withoutEnlargement: true }) // Resize to 280x320
-      .png({ quality: 100, compressionLevel: 0, interlace: true })
-      .sharpen()
-      .toBuffer();
-    // Save the resized image
-    fs.writeFileSync(imageThumbnailPath, resizedImageThumbnailBuffer);
-    fs.writeFileSync(imagePath, resizedImageBuffer);
-    const thumbnailNames = [];
-    for (let i = 0; i < thumbnails.length; i++) {
-      const thumbnail = thumbnails[i];
-      const thumbnailName = `${Date.now()}-${thumbnail.originalname}`;
-      const thumbnailPath = `./uploads/products/${thumbnailName}`;
-      const thumbnailImagePath = `./uploads/products/thumbnails/${thumbnailName}`;
-      // Resize each thumbnail
-      const resizedThumbnailBuffer = await sharp(thumbnail.buffer)
-        .resize(100, 100, { fit: sharp.fit.inside, withoutEnlargement: true }) // Resize to 280x320
-        .png({ quality: 100, compressionLevel: 0, interlace: true })
-        .sharpen()
-        .toBuffer();
-      const resizedThumbnailImageBuffer = await sharp(thumbnail.buffer)
-        .resize(280, 320, { fit: sharp.fit.inside, withoutEnlargement: true }) // Resize to 280x320
-        .png({ quality: 100, compressionLevel: 0, interlace: true })
-        .sharpen()
-        .toBuffer();
-      // Save the resized thumbnail
-      fs.writeFileSync(thumbnailPath, resizedThumbnailImageBuffer);
-      fs.writeFileSync(thumbnailImagePath, resizedThumbnailBuffer);
-      thumbnailNames.push(thumbnailName);
-    }
-    // Save the product with the resized image and thumbnails
-    const newProduct = await Product.create({
-      name,
-      size,
-      availability,
-      description,
-      image: imageName, // Save the image path
-      category,
-      slug,
-      featured,
-      mostPopular,
-      thumbnails: thumbnailNames, // Save the thumbnails paths
-    });
+    const newProduct = await Product.create({ name, size, availability, description, image, category, slug, featured, mostPopular, thumbnails });
     res.status(201).json(newProduct);
-
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Unable to add product" });
   }
-};
-
-
-
-
+}
 
 export const updateProduct = async (req, res) => {
   const { name, size, availability, description, slug, category, featured, mostPopular } = req.body;
@@ -142,7 +66,7 @@ export const updateProduct = async (req, res) => {
         fs.unlinkSync(`./${product.image}`);
       }
     }
-    if (thumbnails) {
+    if (thumbnails.length != 0) {
       await Product.findByIdAndUpdate(id, { thumbnails });
       product.thumbnails.map((thumbnail) => {
         if (fs.existsSync(`./${thumbnail}`)) {

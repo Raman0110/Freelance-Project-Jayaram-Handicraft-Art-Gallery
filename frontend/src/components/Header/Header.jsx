@@ -27,7 +27,7 @@ const Header = () => {
   }
   const [categories, setCategories] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:8000/api/category")
+    axios.get("http://192.168.1.71:8000/api/category")
       .then((res) => {
         setCategories(res.data);
       })
@@ -49,9 +49,9 @@ const Header = () => {
           <div className="container mx-auto">
             <div className="flex justify-between items-center">
               <div className="header-left flex gap-8 items-center">
-                <div>
+                <Link to="/">
                   <img src="/images/small.png" alt="logo" />
-                </div>
+                </Link>
                 <div className="search-bar relative hidden md:block">
                   <form onSubmit={handleSearch}>
                     <input type="text" onChange={handleSearchChange} value={searchInput} name="search" id="search" className='border outline-[#0D276A] p-2 rounded-full w-80' placeholder='Search Product..' />
@@ -76,9 +76,9 @@ const Header = () => {
             </div>
           </div>
           <div className={`searchBar md:hidden absolute z-10 ${search ? 'activesearchBar' : ''}`}>
-            <form onSubmit={handleSearch}>
-              <input type="text" name="search" onChange={handleSearchChange} value={searchInput} className='p-4 outline-none w-[300px] ' />
-              <button className='bg-[#1e1e1e] p-4 text-white'>Search</button>
+            <form onSubmit={handleSearch} className='flex shadow-md'>
+              <input type="text" name="search" onChange={handleSearchChange} value={searchInput} className='border rounded-md border-slate-700 flex-grow p-4 outline-none' />
+              <button className='bg-[#1e1e1e] p-4 text-white rounded-md'>Search</button>
             </form>
           </div>
         </header>

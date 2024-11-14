@@ -14,7 +14,7 @@ import messageRoute from "./routes/message-route.js";
 const app = express();
 export const __filename = url.fileURLToPath(import.meta.url);
 export const __dirname = path.dirname(__filename);
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+app.use(cors({ origin: "http://192.168.1.71:5173", credentials: true }));
 connectDB();
 app.use(cookieParser());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
@@ -28,6 +28,6 @@ app.use('/api/slider', sliderRoute);
 app.use('/api/message', messageRoute);
 
 
-app.listen(8000, () => {
+app.listen(8000, "0.0.0.0", () => {
   console.log('server running');
 })

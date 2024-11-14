@@ -10,7 +10,7 @@ const UpdateProductCata = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`http://localhost:8000/api/category/${id}`)
+    axios.get(`http://192.168.1.71:8000/api/category/${id}`)
       .then((res) => {
         setCategory(res.data);
       })
@@ -34,7 +34,7 @@ const UpdateProductCata = () => {
     }
     const active = e.target.active.checked ? true : false;
     formData.set('active', active.toString());
-    axios.put(`http://localhost:8000/api/category/update/${id}`, formData, { withCredentials: true })
+    axios.put(`http://192.168.1.71:8000/api/category/update/${id}`, formData, { withCredentials: true })
       .then((res) => {
         navigate("/dashboard/product/category");
       })
@@ -74,7 +74,7 @@ const UpdateProductCata = () => {
 
         <label htmlFor="active">Active</label>
         <input type="checkbox" onChange={handleChange} name="active" id="active" className='ml-2' checked={category.active} />
-        <img src={`http://localhost:8000/${category.image}`} alt="unable to load image" width="250px" />
+        <img src={`http://192.168.1.71:8000/${category.image}`} alt="unable to load image" width="250px" />
         <button className='bg-[#0D276A] text-white mt-5 p-3 rounded-md w-full'>Update Category</button>
       </form>
     </section>

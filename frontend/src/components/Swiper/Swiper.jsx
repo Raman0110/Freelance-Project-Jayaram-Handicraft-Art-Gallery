@@ -5,11 +5,12 @@ import 'swiper/css/pagination';
 import { Pagination, Autoplay } from 'swiper/modules';
 import axios from 'axios';
 import Loading from '../Loading/Loading';
+import { LazyImageRenderer } from 'lazy-image-renderer';
 
 const Slider = () => {
   const [sliders, setSliders] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:8000/api/slider")
+    axios.get("http://192.168.1.71:8000/api/slider")
       .then((res) => {
         setSliders(res.data)
       })
@@ -18,9 +19,7 @@ const Slider = () => {
       })
   }, [])
   if (sliders.length == 0) {
-    return (
-      <Loading type='slider' />
-    )
+    return <Loading type="slider" />
   }
   return (
     <Swiper className='banner-swiper'
@@ -37,7 +36,13 @@ const Slider = () => {
         sliders.map((slider, index) => (
           <SwiperSlide key={index}>
             <div className="swiper-image-wrapper md:h-[78vh]">
-              <img src={`http://localhost:8000/${slider.image}`} alt="slider-image" className='object-center' loading='lazy' />
+              <LazyImageRenderer
+                effect='opacity'
+                effectDuration={0.1}
+                objectFit='center'
+                src={`http://192.168.1.71:8000/${slider.image}`}
+                alt='slider-image'
+              />
             </div>
           </SwiperSlide>
         ))

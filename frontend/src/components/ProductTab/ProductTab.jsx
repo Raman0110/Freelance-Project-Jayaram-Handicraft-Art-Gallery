@@ -7,7 +7,7 @@ import Loading from '../Loading/Loading.jsx';
 const ProductTab = () => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:8000/api/product")
+    axios.get("http://192.168.1.71:8000/api/product")
       .then((res) => {
         setProducts(res.data);
       })
@@ -28,7 +28,7 @@ const ProductTab = () => {
             <Tab>Most Popular</Tab>
           </TabList>
           <TabPanel>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[18px]">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[18px]">
               <Loading type='product' />
               <Loading type='product' />
               <Loading type='product' />
@@ -44,27 +44,27 @@ const ProductTab = () => {
       <div className="container mx-auto px-4 sm:px-0">
         <Tabs>
           <TabList>
-            <Tab>Featured</Tab>
-            <Tab>Latest</Tab>
-            <Tab>Most Popular</Tab>
+            <Tab className="max-sm:text-md cursor-pointer outline-none">Featured</Tab>
+            <Tab className="max-sm:text-md cursor-pointer outline-none">Latest</Tab>
+            <Tab className="max-sm:text-md cursor-pointer outline-none">Most Popular</Tab>
           </TabList>
 
           <TabPanel>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[18px]">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-4 md:gap-[18px]">
               {featuredProducts.map((product, index) => (
                 <ProductCard product={product} key={index} />
               ))}
             </div>
           </TabPanel>
           <TabPanel>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[18px]">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-4 md:gap-[18px]">
               {sortedProducts.map((product, index) => (
                 <ProductCard product={product} key={index} />
               ))}
             </div>
           </TabPanel>
           <TabPanel>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[18px]">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-4 md:gap-[18px]">
               {mostPopularProducts.map((product, index) => (
                 <ProductCard product={product} key={index} />
               ))}

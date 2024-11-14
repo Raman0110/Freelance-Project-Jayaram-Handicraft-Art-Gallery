@@ -31,7 +31,7 @@ const ViewBlog = () => {
     setIsOpen(false);
   }
   const handleDelete = () => {
-    axios.delete(`http://localhost:8000/api/blog/delete/${blogToDelete._id}`, { withCredentials: true })
+    axios.delete(`http://192.168.1.71:8000/api/blog/delete/${blogToDelete._id}`, { withCredentials: true })
       .then((res) => {
         closeModal();
         toast.success("Blog deleted successfully", {
@@ -46,7 +46,7 @@ const ViewBlog = () => {
   }
 
   useEffect(() => {
-    axios.get("http://localhost:8000/api/blog")
+    axios.get("http://192.168.1.71:8000/api/blog")
       .then((res) => {
         setBlogs(res.data)
       })
