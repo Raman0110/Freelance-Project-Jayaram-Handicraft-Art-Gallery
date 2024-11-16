@@ -14,9 +14,8 @@ const CategoryDetailPage = () => {
   useEffect(() => {
     axios.get(`http://192.168.1.71:8000/api/category/category-product/${slug}`)
       .then((res) => {
-        console.log(res);
         setCategory(res.data.category);
-        setProducts(res.data.products);
+        setProducts(res.data.category.products);
       })
       .catch((err) => {
         console.log(err);
@@ -48,7 +47,7 @@ const CategoryDetailPage = () => {
         <div className="container mx-auto">
           <h2 className="text-3xl font-bold text-[#0D276A] text-center py-6">{category.name}</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[18px]">
-            {products.map((product, index) => (
+            {products && products.map((product, index) => (
               <ProductCard product={product} key={index} />
             ))}
           </div>

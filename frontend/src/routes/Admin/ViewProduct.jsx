@@ -28,7 +28,7 @@ const ViewProduct = () => {
       .catch((err) => {
         console.log(err);
       })
-  }, [products]);
+  }, []);
   function openModal(product) {
     setIsOpen(true);
     setProductToDelete(product);
@@ -38,10 +38,10 @@ const ViewProduct = () => {
     setProductToDelete(null);
   }
   const handleDelete = () => {
-    axios.delete(`http://192.168.1.71:8000/api/product/delete/${productToDelete._id}`, { withCredentials: true })
+    axios.delete(`http://192.168.1.71:8000/api/product/delete/${productToDelete.id}`, { withCredentials: true })
       .then((res) => {
         closeModal();
-        navigate("/dashboard/product");
+        setProducts(products.filter((product) => product.id !== productToDelete.id));
         toast.success("Product deleted successfully", {
           autoClose: 2000,
           position: "top-center",
@@ -74,7 +74,7 @@ const ViewProduct = () => {
               <td>{product.category.name}</td>
               <td>{product.createdAt}</td>
               <td>
-                <Link to={`update/${product._id}`}>
+                <Link to={`update/${product.id}`}>
                   <FontAwesomeIcon icon={faEdit} className='icon edit-icon' />
                 </Link>
                 <FontAwesomeIcon icon={faRemove} className='icon' onClick={() => openModal(product)} />

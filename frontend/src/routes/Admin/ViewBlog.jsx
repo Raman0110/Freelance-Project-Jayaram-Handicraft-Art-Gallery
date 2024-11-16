@@ -31,9 +31,10 @@ const ViewBlog = () => {
     setIsOpen(false);
   }
   const handleDelete = () => {
-    axios.delete(`http://192.168.1.71:8000/api/blog/delete/${blogToDelete._id}`, { withCredentials: true })
+    axios.delete(`http://192.168.1.71:8000/api/blog/delete/${blogToDelete.id}`, { withCredentials: true })
       .then((res) => {
         closeModal();
+        setBLogs(blogs.filter((blog) => blog.id !== blogToDelete.id));
         toast.success("Blog deleted successfully", {
           autoClose: 2000,
           position: "top-right",
@@ -53,12 +54,12 @@ const ViewBlog = () => {
       .catch((err) => {
         console.log(err.message);
       })
-  }, [blogs])
+  },)
   return (
     <>
       <section className='px-4'>
         <ToastContainer />
-        <h2 className='text-center font-bold text-2xl py-6'>BLog List</h2>
+        <h2 className='text-center font-bold text-2xl py-6'>Blog List</h2>
         <table className='w-[100%] list-table'>
           <tr>
             <th>S.N</th>
@@ -72,7 +73,7 @@ const ViewBlog = () => {
               <td>{blog.name}</td>
               <td>{blog.createdAt}</td>
               <td>
-                <Link to={`update/${blog._id}`}>
+                <Link to={`update/${blog.id}`}>
                   <FontAwesomeIcon icon={faEdit} className='icon edit-icon' />
                 </Link>
                 <FontAwesomeIcon icon={faRemove} className='icon' onClick={() => openModal(blog)} /></td>

@@ -1,25 +1,23 @@
-import mongoose from "mongoose";
+import { DataTypes } from "sequelize";
+import sequelize from "../config/sequelize.js";
 
-const messageModel = new mongoose.Schema(
-  {
-    name: {
-      type: String,
-      required: true
-    },
-    email: {
-      type: String,
-      required: true,
-      unique: true
-    },
-    message: {
-      type: String,
-      required: true
-    }
+const Message = sequelize.define("Message", {
+  name: {
+    type: DataTypes.STRING,
+    allowNull: false
   },
-  {
-    timestamps: true
+  email: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true
+  },
+  message: {
+    type: DataTypes.STRING,
+    allowNull: false
   }
-);
+}, {
+  timestamps: true,
+  tableName: 'messages'
+});
 
-const Message = mongoose.model('message', messageModel);
 export default Message;

@@ -1,30 +1,30 @@
-import mongoose from "mongoose"
+// category-model.js
+import { DataTypes } from "sequelize";
+import sequelize from "../config/sequelize.js";
+import Product from "./product-model.js";
 
-const categorySchema = new mongoose.Schema({
+const Category = sequelize.define("Category", {
   name: {
-    type: String,
-    required: true,
+    type: DataTypes.STRING,
+    allowNull: false,
     unique: true
   },
   image: {
-    type: String,
-    required: true
+    type: DataTypes.STRING,
+    allowNull: false
   },
   active: {
-    type: Boolean,
-    required: true
+    type: DataTypes.BOOLEAN,
+    allowNull: false
   },
   slug: {
-    type: String,
-    required: true,
+    type: DataTypes.STRING,
+    allowNull: false,
     unique: true
   }
-},
-  {
-    timestamps: true
-  }
-)
-
-const Category = mongoose.model("category", categorySchema);
+}, {
+  timestamps: true,
+  tableName: 'categories'
+});
 
 export default Category;

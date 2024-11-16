@@ -20,9 +20,9 @@ router.get("/shop", shopProducts);
 router.get("/", getProduct);
 router.get("/:id", getProductById);
 router.get("/get/:slug", getProductBySlug);
-router.post("/add", verifyAuth, upload.fields([{ name: "image" }, { name: "thumbnails" }]), addProduct);
+router.post("/add", verifyAuth, upload.fields([{ name: "image" }, { name: "thumbnails", maxCount: 4 }]), addProduct);
 router.post("/message", getProductMessage)
-router.put("/update/:id", verifyAuth, upload.fields([{ name: "image" }, { name: "thumbnails" }]), updateProduct);
+router.put("/update/:id", verifyAuth, upload.fields([{ name: "image" }, { name: "thumbnails", maxCount: 4 }]), updateProduct);
 router.delete("/delete/:id", verifyAuth, deleteProduct);
 
 

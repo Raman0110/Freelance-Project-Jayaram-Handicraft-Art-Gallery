@@ -1,21 +1,19 @@
-import mongoose from "mongoose";
+import { DataTypes } from "sequelize";
+import sequelize from "../config/sequelize.js";
 
-const sliderSchema = new mongoose.Schema(
-  {
-    name: {
-      type: String,
-      required: true,
-      unique: true
-    },
-    image: {
-      type: String,
-      required: true,
-    },
+const Slider = sequelize.define("Slider", {
+  name: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true
   },
-  {
-    timestamps: true
+  image: {
+    type: DataTypes.STRING,
+    allowNull: false
   }
-);
+}, {
+  timestamps: true,
+  tableName: 'sliders'
+});
 
-const Slider = mongoose.model("slider", sliderSchema);
 export default Slider;

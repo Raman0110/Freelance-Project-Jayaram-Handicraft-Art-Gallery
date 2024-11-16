@@ -64,6 +64,8 @@ const SinglePage = () => {
           navigate('/error');
         } else {
           setProduct(res.data);
+          console.log(res.data);
+
           setFormData((prevData) => ({
             ...prevData,
             productName: res.data.name
@@ -158,7 +160,7 @@ const SinglePage = () => {
                             />
                           </div>
                         </SwiperSlide>
-                        {product.thumbnails.map((thumbnail, index) => (
+                        {product.thumbnails && product.thumbnails.split(',').map((thumbnail, index) => (
                           <SwiperSlide key={index}>
                             <div className="product-thumbnail-image">
                               <LazyImageRenderer
@@ -191,7 +193,7 @@ const SinglePage = () => {
                             />
                           </div>
                         </SwiperSlide>
-                        {product.thumbnails.map((thumbnail, index) => (
+                        {product.thumbnails && product.thumbnails.split(',').map((thumbnail, index) => (
                           <SwiperSlide key={index}>
                             <div className="img-container max-w-[450px] h-[450px] mx-auto">
                               <LazyImageRenderer

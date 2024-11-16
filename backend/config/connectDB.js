@@ -1,14 +1,21 @@
-import mongoose from "mongoose";
+import mysql from "mysql2";
 
-const DB_URL = process.env.DBURL;
-const connectDB = async () => {
-  try {
-    const res = await mongoose.connect(DB_URL);
-    if (!res) console.log("Database Connection Failed");
-    console.log("Database Connected Successfully");
-  } catch (error) {
-    console.log(error);
+const connection = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: '',
+  database: 'jayaram_db'
+});
+
+connection.connect((err) => {
+  if (err) {
+    console.error('Error connecting to MySQL:', err.stack);
+    return;
   }
-}
+  console.log('Connected to MySQL as id ' + connection.threadId);
+});
 
-export default connectDB
+export default connection;
+
+
+

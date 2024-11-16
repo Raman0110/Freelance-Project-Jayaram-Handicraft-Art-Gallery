@@ -60,9 +60,9 @@ const Messages = () => {
   }, [messages]);
 
   const handleDelete = () => {
-    axios.delete(`http://192.168.1.71:8000/api/message/delete/${messageToDelete._id}`)
+    axios.delete(`http://192.168.1.71:8000/api/message/delete/${messageToDelete.id}`)
       .then((res) => {
-        setMessages(messages.filter((message) => message._id !== messageToDelete._id));
+        setMessages(messages.filter((message) => message.id !== messageToDelete.id));
         closeModal();
         toast.success("Message deleted successfully", {
           autoClose: 2000,

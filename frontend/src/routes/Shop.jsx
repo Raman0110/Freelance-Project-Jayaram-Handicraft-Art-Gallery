@@ -111,13 +111,13 @@ const Shop = () => {
                         <input
                           type="checkbox"
                           className="mr-2"
-                          id={category._id}
+                          id={category.id}
                           name="category"
-                          value={category._id}
-                          checked={filter.category.includes(category._id)}
+                          value={category.id}
+                          checked={filter.category.includes(category.id)}
                           onChange={handleFilterChange}
                         />
-                        <label htmlFor={category._id}>{category.name}</label>
+                        <label htmlFor={category.id}>{category.name}</label>
                       </div>
                     ))}
                   </div>

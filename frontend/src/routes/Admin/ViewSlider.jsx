@@ -38,14 +38,14 @@ const ViewSlider = () => {
       .catch((err) => {
         console.log(err);
       })
-  }, [sliders]);
+  });
   const navigate = useNavigate();
 
   const handleDelete = () => {
-    axios.delete(`http://192.168.1.71:8000/api/slider/delete/${sliderToDelete._id}`, { withCredentials: true })
+    axios.delete(`http://192.168.1.71:8000/api/slider/delete/${sliderToDelete.id}`, { withCredentials: true })
       .then((res) => {
         closeModal();
-        navigate("/dashboard/slider");
+        setSliders(sliders.filter((slider) => slider.id !== sliderToDelete.id));
         toast.success("Slider deleted successfully", {
           autoClose: 2000,
           position: "top-center",
@@ -79,7 +79,7 @@ const ViewSlider = () => {
               <td>{slider.name}</td>
               <td>{slider.createdAt}</td>
               <td>
-                <Link to={`/dashboard/slider/update/${slider._id}`}>
+                <Link to={`/dashboard/slider/update/${slider.id}`}>
                   <FontAwesomeIcon icon={faEdit} className='icon edit-icon' />
                 </Link>
                 <FontAwesomeIcon icon={faRemove} className='icon' onClick={() => openModal(slider)} />

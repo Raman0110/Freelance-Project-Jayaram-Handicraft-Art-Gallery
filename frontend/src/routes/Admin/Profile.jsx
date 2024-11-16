@@ -24,7 +24,7 @@ const Profile = () => {
             <p className='py-4 text-sm'>
               <span className='text-[#0D276A] font-medium'>Email:</span> {admin.email}</p>
             <div className="flex gap-8 text-white">
-              <Link to={`/dashboard/profile/update/${admin._id}`}>
+              <Link to={`/dashboard/profile/update/${admin.id}`}>
                 <button className='bg-[#0D276A] p-2 rounded-md'>Update Profile</button>
               </Link>
             </div>

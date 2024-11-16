@@ -1,31 +1,34 @@
 import Blog from "../models/blog-model.js";
 import fs from "fs";
 
-
 export const getBlog = async (req, res) => {
   try {
-    const blogs = await Blog.find({});
+    const blogs = await Blog.findAll();
     res.status(200).json(blogs);
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Unable to get blogs" });
   }
-}
+};
+
 export const getBlogById = async (req, res) => {
   const { id } = req.params;
   try {
-    const blog = await Blog.findById(id);
+    const blog = await Blog.findByPk(id);
+    if (!blog) {
+      return res.status(404).json({ message: "Blog not found" });
+    }
     res.status(200).json(blog);
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Unable to get blog" });
   }
-}
+};
 
 export const getBlogBySlug = async (req, res) => {
   const { slug } = req.params;
   try {
-    const blog = await Blog.findOne({ slug })
+    const blog = await Blog.findOne({ where: { slug } });
     if (!blog) return res.status(404).json({ message: "Blog not found" });
     res.status(200).json(blog);
   } catch (error) {
@@ -34,12 +37,10 @@ export const getBlogBySlug = async (req, res) => {
   }
 };
 
-
-
-
 export const addBlog = async (req, res) => {
   const { name, description, slug } = req.body;
   const image = req.file ? req.file.path : null;
+
   try {
     const newBlog = await Blog.create({ name, description, image, slug });
     res.status(201).json(newBlog);
@@ -47,36 +48,48 @@ export const addBlog = async (req, res) => {
     console.log(error);
     res.status(500).json({ message: "Unable to add blog" });
   }
-}
+};
 export const updateBlog = async (req, res) => {
   const { name, description, image, slug } = req.body;
   const { id } = req.params;
+
   try {
-    const updatedBlog = await Blog.findById(id);
-    await Blog.findByIdAndUpdate(id, { name, description, image, slug });
-    if (!updatedBlog) {
-      return res.status(404).json({ message: "Slider not found" });
+    const blog = await Blog.findByPk(id);
+    if (!blog) {
+      return res.status(404).json({ message: "Blog not found" });
     }
-    if (image) {
-      await Blog.findByIdAndUpdate(id, { image });
-      if (fs.existsSync(`./${updatedBlog.image}`)) {
-        fs.unlinkSync(`./${updatedBlog.image}`);
-      }
+
+    if (image && blog.image && fs.existsSync(`./${blog.image}`)) {
+      fs.unlinkSync(`./${blog.image}`);
     }
-    res.status(200).json({ message: "Blog updated successfully" });
+
+    await blog.update({ name, description, image, slug });
+
+    res.status(200).json({ message: "Blog updated successfully", blog });
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Unable to update blog" });
   }
-}
+};
+
 export const deleteBlog = async (req, res) => {
   const { id } = req.params;
+
   try {
-    const deletedBlog = await Blog.findByIdAndDelete(id);
-    fs.unlinkSync(`./${deletedBlog.image}`);
-    res.status(200).json({ deletedBlog, message: "Blog Deleted" });
+    const blog = await Blog.findByPk(id);
+    if (!blog) {
+      return res.status(404).json({ message: "Blog not found" });
+    }
+
+    if (blog.image && fs.existsSync(`./${blog.image}`)) {
+      fs.unlinkSync(`./${blog.image}`);
+    }
+
+    await blog.destroy();
+
+    res.status(200).json({ message: "Blog deleted successfully", blog });
   } catch (error) {
     console.log(error);
-    res.status(500).json({ message: "Unable to delete Blog" });
+    res.status(500).json({ message: "Unable to delete blog" });
   }
-}
+};

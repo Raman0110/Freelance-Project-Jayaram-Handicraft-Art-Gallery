@@ -30,7 +30,7 @@ const UpdateProfile = () => {
       return;
     }
     try {
-      await axios.put(`http://192.168.1.71:8000/api/auth/user/update/${admin._id}`, {
+      await axios.put(`http://192.168.1.71:8000/api/auth/user/update/${admin.id}`, {
         username,
         email,
         password,

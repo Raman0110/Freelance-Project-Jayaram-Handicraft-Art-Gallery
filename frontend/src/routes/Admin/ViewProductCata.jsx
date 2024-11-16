@@ -35,16 +35,18 @@ const ViewProductCata = () => {
     axios.get("http://192.168.1.71:8000/api/category")
       .then((res) => {
         setCategories(res.data);
+
       })
       .catch((err) => {
         console.log(err.message);
       })
-  }, [categories]);
+  },);
 
   const handleDelete = () => {
-    axios.delete(`http://192.168.1.71:8000/api/category/delete/${categoryToDelete._id}`, { withCredentials: true })
+    axios.delete(`http://192.168.1.71:8000/api/category/delete/${categoryToDelete.id}`, { withCredentials: true })
       .then((res) => {
         closeModal();
+        setCategories(categories.filter((category) => category.id !== categoryToDelete.id));
         toast.success("Category deleted successfully", {
           autoClose: 2000,
           position: "top-center",
@@ -80,7 +82,7 @@ const ViewProductCata = () => {
             <td>{category.createdAt}</td>
             <td>{category.active ? "Yes" : "No"}</td>
             <td>
-              <Link to={`update/${category._id}`}>
+              <Link to={`update/${category.id}`}>
                 <FontAwesomeIcon icon={faEdit} className='icon edit-icon' />
               </Link>
               <FontAwesomeIcon icon={faRemove} className='icon' onClick={() => openModal(category)} /></td>

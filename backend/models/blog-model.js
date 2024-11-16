@@ -1,29 +1,28 @@
-import mongoose from "mongoose";
+import { DataTypes } from "sequelize";
+import sequelize from "../config/sequelize.js";
 
-const blogSchema = new mongoose.Schema({
+const Blog = sequelize.define("Blog", {
   name: {
-    type: String,
-    required: true,
+    type: DataTypes.STRING,
+    allowNull: false,
     unique: true
   },
   description: {
-    type: String,
-    required: true,
+    type: DataTypes.STRING,
+    allowNull: false
   },
   image: {
-    type: String,
-    required: true,
+    type: DataTypes.STRING,
+    allowNull: false
   },
   slug: {
-    type: String,
-    required: true,
+    type: DataTypes.STRING,
+    allowNull: false,
     unique: true
   }
-},
-  {
-    timestamps: true
-  }
-);
+}, {
+  timestamps: true, // Automatically adds createdAt and updatedAt
+  tableName: 'blogs' // Optional: If you want to specify the table name explicitly
+});
 
-const Blog = mongoose.model("blog", blogSchema);
 export default Blog;

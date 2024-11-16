@@ -9,6 +9,7 @@ const UpdateProduct = () => {
     axios.get(`http://192.168.1.71:8000/api/product/${id}`)
       .then((res) => {
         setProduct(res.data);
+        console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -81,9 +82,9 @@ const UpdateProduct = () => {
         <input type="text" name='slug' id='slug' onChange={handleChange} value={product.slug} className='p-1 outline-none text-black rounded-md' />
 
         <label htmlFor="category">Category</label>
-        <select name="category" id="category" className='outline-none' value={product?.category?._id}>
+        <select name="category" id="category" className='outline-none' value={product?.category?.id}>
           {categories.map((category, index) => (
-            <option value={`${category._id}`} key={index} >{category.name}</option>
+            <option value={`${category.id}`} key={index} >{category.name}</option>
           ))}
         </select>
 
