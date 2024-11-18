@@ -50,7 +50,7 @@ const Messages = () => {
     setViewOpen(false);
   }
   useEffect(() => {
-    axios.get("http://192.168.1.71:8000/api/message")
+    axios.get(`${import.meta.env.VITE_host}/api/message`)
       .then((res) => {
         setMessages(res.data)
       })
@@ -60,7 +60,7 @@ const Messages = () => {
   }, [messages]);
 
   const handleDelete = () => {
-    axios.delete(`http://192.168.1.71:8000/api/message/delete/${messageToDelete.id}`)
+    axios.delete(`${import.meta.env.VITE_host}/api/message/delete/${messageToDelete.id}`)
       .then((res) => {
         setMessages(messages.filter((message) => message.id !== messageToDelete.id));
         closeModal();

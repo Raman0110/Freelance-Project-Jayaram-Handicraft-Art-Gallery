@@ -11,7 +11,7 @@ const DashboardLayout = () => {
   const navigate = useNavigate();
   const [isAdmin, setIsAdmin] = useState(false);
   useEffect(() => {
-    axios.get("http://192.168.1.71:8000/api/auth/authenticate", { withCredentials: true })
+    axios.get(`${import.meta.env.VITE_host}/api/auth/authenticate`, { withCredentials: true })
       .then((res) => {
         if (!res.data.isAdmin) {
           setIsAdmin(false);

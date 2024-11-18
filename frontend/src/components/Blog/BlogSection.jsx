@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 const BlogSection = () => {
   const [blogs, setBlogs] = useState([]);
   useEffect(() => {
-    axios.get("http://192.168.1.71:8000/api/blog")
+    axios.get(`${import.meta.env.VITE_host}/api/blog`)
       .then((res) => {
         setBlogs(res.data);
 
@@ -31,7 +31,7 @@ const BlogSection = () => {
                       effect='opacity'
                       effectDuration={0.1}
                       objectFit='cover'
-                      src={`http://192.168.1.71:8000/${blog.image}`}
+                      src={`${import.meta.env.VITE_host}/${blog.image}`}
                       className=' cursor-pointer hover:scale-[110%] transition-transform duration-200 ease-out h-full w-full'
                     />
                   </Link>
@@ -52,7 +52,7 @@ const BlogSection = () => {
                         effect='opacity'
                         effectDuration={0.1}
                         objectFit='cover'
-                        src={`http://192.168.1.71:8000/${blog.image}`}
+                        src={`${import.meta.env.VITE_host}/${blog.image}`}
                         className='cursor-pointer hover:scale-[110%] transition-transform duration-200 ease-out h-full w-full'
                         alt={blog.name}
                       />

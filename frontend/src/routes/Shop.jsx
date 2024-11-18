@@ -28,17 +28,18 @@ const Shop = () => {
   useEffect(() => {
     const categoryQuery = filter.category.join(',');
     axios
-      .get(`http://192.168.1.71:8000/api/product/shop?search=${search || ""}&category=${categoryQuery}&size=${filter.size}&availability=${filter.availability}`)
+      .get(`${import.meta.env.VITE_host}/api/product/shop?search=${search || ""}&category=${categoryQuery}&size=${filter.size}&availability=${filter.availability}`)
       .then((res) => {
         setProducts(res.data);
         setLoading(false);
+        console.log(filter.category);
       })
       .catch((err) => console.log(err));
   }, [filter, search]);
 
   useEffect(() => {
     axios
-      .get(`http://192.168.1.71:8000/api/category`)
+      .get(`${import.meta.env.VITE_host}/api/category`)
       .then((res) => {
         setCategories(res.data);
       })
@@ -52,8 +53,9 @@ const Shop = () => {
     setFilter((prev) => {
       if (name === "category") {
         let updatedCategories = [...prev.category];
-        if (checked) {
+        if (checked && !filter.category.includes(value)) {
           updatedCategories.push(value);
+
         } else {
           updatedCategories = updatedCategories.filter((categoryId) => categoryId !== value);
         }
@@ -71,10 +73,10 @@ const Shop = () => {
   return (
     <>
       <MetaTags
-        title='Shop | Jayram Handicraft Art Gallery Pvt. Ltd'
-        description='Jayram Handicraft Art Gallery provides excellent quality Traditional Thangkas crafted with love and we believe that art is meant to be seen, appreciated, and valued, just like the artists who create them. our mission is to promote Nepalese art and crafts through the world'
+        title='Shop | Jayaram Handicraft Art Gallery'
+        description='Jayaram Handicraft Art Gallery provides excellent quality Traditional Thangkas crafted with love and we believe that art is meant to be seen, appreciated, and valued, just like the artists who create them. our mission is to promote Nepalese art and crafts through the world'
         image='/images/logo.png'
-        name='Jayram Handicraft Art Gallery Pvt. Ltd' />
+        name='Jayaram Handicraft Art Gallery' />
       <section className='py-4'>
         <Breadcrumb location='Shop' />
         <div className="container mx-auto">
@@ -114,7 +116,6 @@ const Shop = () => {
                           id={category.id}
                           name="category"
                           value={category.id}
-                          checked={filter.category.includes(category.id)}
                           onChange={handleFilterChange}
                         />
                         <label htmlFor={category.id}>{category.name}</label>

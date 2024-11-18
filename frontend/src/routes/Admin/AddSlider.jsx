@@ -22,7 +22,7 @@ const AddSlider = () => {
     }
 
     try {
-      axios.post("http://192.168.1.71:8000/api/slider/add", formData, { withCredentials: true });
+      axios.post(`${import.meta.env.VITE_host}/api/slider/add`, formData, { withCredentials: true });
       toast.success("Slider Image added successfully", {
         position: "top-center",
         autoClose: 2000,

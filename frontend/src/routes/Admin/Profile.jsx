@@ -5,7 +5,7 @@ import axios from "axios";
 const Profile = () => {
   const [admin, setAdmin] = useState({});
   useEffect(() => {
-    axios.get("http://192.168.1.71:8000/api/auth/user")
+    axios.get(`${import.meta.env.VITE_host}/api/auth/user`)
       .then((res) => {
         setAdmin(res.data[0]);
       })
@@ -30,7 +30,7 @@ const Profile = () => {
             </div>
           </div>
           <div className="imgSec lg:w-1/2">
-            <img src="/images/login.jpg" alt="image" className='w-full h-full' />
+            <img src="/images/sliderImg1.jpg" alt="image" className='w-full h-full' />
           </div>
         </div>
       </div>

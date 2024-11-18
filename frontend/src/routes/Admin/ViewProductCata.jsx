@@ -32,7 +32,7 @@ const ViewProductCata = () => {
     setCategoryToDelete(null);
   }
   useEffect(() => {
-    axios.get("http://192.168.1.71:8000/api/category")
+    axios.get(`${import.meta.env.VITE_host}/api/category`)
       .then((res) => {
         setCategories(res.data);
 
@@ -43,7 +43,7 @@ const ViewProductCata = () => {
   },);
 
   const handleDelete = () => {
-    axios.delete(`http://192.168.1.71:8000/api/category/delete/${categoryToDelete.id}`, { withCredentials: true })
+    axios.delete(`${import.meta.env.VITE_host}/api/category/delete/${categoryToDelete.id}`, { withCredentials: true })
       .then((res) => {
         closeModal();
         setCategories(categories.filter((category) => category.id !== categoryToDelete.id));

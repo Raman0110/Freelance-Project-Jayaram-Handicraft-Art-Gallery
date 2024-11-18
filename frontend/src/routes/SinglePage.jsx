@@ -58,7 +58,7 @@ const SinglePage = () => {
   }
   const navigate = useNavigate();
   useEffect(() => {
-    axios.get(`http://192.168.1.71:8000/api/product/get/${slug}`)
+    axios.get(`${import.meta.env.VITE_host}/api/product/get/${slug}`)
       .then((res) => {
         if (res.data && Object.keys(res.data).length === 0) {
           navigate('/error');
@@ -78,7 +78,7 @@ const SinglePage = () => {
         console.log(err);
       });
 
-    axios.get(`http://192.168.1.71:8000/api/product`)
+    axios.get(`${import.meta.env.VITE_host}/api/product`)
       .then((res) => {
         setProducts(res.data);
       })
@@ -106,7 +106,7 @@ const SinglePage = () => {
         closeButton: false,
         position: "top-center"
       });
-      await axios.post("http://192.168.1.71:8000/api/product/message", formData);
+      await axios.post(`${import.meta.env.VITE_host}/api/product/message`, formData);
     } catch (error) {
       toast.error(error.response.data.message, {
         autoClose: 2000,
@@ -126,11 +126,11 @@ const SinglePage = () => {
           <MetaTags
             title={product.name}
             description={product.description}
-            image={`http://192.168.1.71:8000/${product.image}`}
-            name='Jayram Handicraft Art Gallery Pvt. Ltd' />
+            image={`${import.meta.env.VITE_host}/${product.image}`}
+            name='Jayaram Handicraft Art Gallery' />
           <section>
             <ToastContainer />
-            <Breadcrumb location="product" />
+            <Breadcrumb location={`Product`} subLocation={product.name} />
             <div className="container mx-auto my-4 px-2">
               <div className="flex max-md:flex-col">
                 <div className="imgSection w-full md:w-3/5">
@@ -155,7 +155,7 @@ const SinglePage = () => {
                               effect='opacity'
                               effectDuration={0.1}
                               objectFit='contain'
-                              src={`http://192.168.1.71:8000/${product.image}`}
+                              src={`${import.meta.env.VITE_host}/${product.image}`}
                               className='cursor-pointer product-thumbnail'
                             />
                           </div>
@@ -167,7 +167,7 @@ const SinglePage = () => {
                                 effect='opacity'
                                 effectDuration={0.1}
                                 objectFit='contain'
-                                src={`http://192.168.1.71:8000/${thumbnail}`}
+                                src={`${import.meta.env.VITE_host}/${thumbnail}`}
                                 className='cursor-pointer product-thumbnail'
                               />
                             </div>
@@ -188,7 +188,7 @@ const SinglePage = () => {
                               effect='opacity'
                               effectDuration={0.1}
                               objectFit='contain'
-                              src={`http://192.168.1.71:8000/${product.image}`}
+                              src={`${import.meta.env.VITE_host}/${product.image}`}
                               className='w-full h-full'
                             />
                           </div>
@@ -200,7 +200,7 @@ const SinglePage = () => {
                                 effect='opacity'
                                 effectDuration={0.1}
                                 objectFit='contain'
-                                src={`http://192.168.1.71:8000/${thumbnail}`}
+                                src={`${import.meta.env.VITE_host}/${thumbnail}`}
                                 className='w-full h-full'
                               />
                             </div>

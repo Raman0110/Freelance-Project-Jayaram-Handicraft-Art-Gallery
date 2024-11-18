@@ -118,11 +118,11 @@ html {
   --swiper-navigation-size: 22px !important;
 }
 
-.react-tabs__tab {
+/* .react-tabs__tab {
   cursor: pointer;
   font-size: 22px;
   outline: none;
-}
+} */
 
 .react-tabs__tab--selected {
   border-bottom: 2px solid black;

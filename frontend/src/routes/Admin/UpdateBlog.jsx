@@ -9,7 +9,7 @@ const UpdateBLog = () => {
   const [blog, setBlog] = useState({ name: '', slug: '', description: '', image: '' });
   const navigate = useNavigate();
   useEffect(() => {
-    axios.get(`http://192.168.1.71:8000/api/blog/${id}`)
+    axios.get(`${import.meta.env.VITE_host}/api/blog/${id}`)
       .then((res) => {
         setBlog(res.data);
       })
@@ -47,7 +47,7 @@ const UpdateBLog = () => {
       });
       return;
     }
-    axios.put(`http://192.168.1.71:8000/api/blog/update/${id}`, formData, { withCredentials: true })
+    axios.put(`${import.meta.env.VITE_host}/api/blog/update/${id}`, formData, { withCredentials: true })
       .then((res) => {
         navigate("/dashboard/blog");
       })
@@ -72,7 +72,7 @@ const UpdateBLog = () => {
         <label htmlFor="image">Upload Image</label>
         <input type="file" name="image" id="image" />
 
-        <img src={`http://192.168.1.71:8000/${blog.image}`} alt="unable to load image" width="250px" />
+        <img src={`${import.meta.env.VITE_host}/${blog.image}`} alt="unable to load image" width="250px" />
         <button className='bg-[#0D276A] text-white mt-5 p-3 rounded-md'>Update Blog</button>
       </form>
     </section>

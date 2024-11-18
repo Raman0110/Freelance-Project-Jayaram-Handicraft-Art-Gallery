@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 const AddBlog = () => {
   const navigate = useNavigate();
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const handleAddBlog = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -24,8 +25,9 @@ const AddBlog = () => {
     }
 
     try {
-      await axios.post("http://192.168.1.71:8000/api/blog/add", formData, { withCredentials: true });
+      await axios.post(`${import.meta.env.VITE_host}/api/blog/add`, formData, { withCredentials: true });
       navigate("/dashboard/blog");
+      setIsSubmitted(true);
       toast.success("Blog added successfully", {
         autoClose: 2000,
         closeButton: false,
@@ -58,7 +60,7 @@ const AddBlog = () => {
         <textarea name="description" id="description" className='outline-none'></textarea>
         <label htmlFor="image">Upload Image</label>
         <input type="file" name="image" id="image" />
-        <button className='bg-[#0D276A] text-white mt-5 p-3 rounded-md'>Add Blog</button>
+        <button className='bg-[#0D276A] text-white mt-5 p-3 rounded-md' disabled={isSubmitted ? true : false}>Add Blog</button>
       </form>
     </section>
   )

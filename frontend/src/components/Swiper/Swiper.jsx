@@ -10,7 +10,7 @@ import { LazyImageRenderer } from 'lazy-image-renderer';
 const Slider = () => {
   const [sliders, setSliders] = useState([]);
   useEffect(() => {
-    axios.get("http://192.168.1.71:8000/api/slider")
+    axios.get(`${import.meta.env.VITE_host}/api/slider`)
       .then((res) => {
         setSliders(res.data)
       })
@@ -40,7 +40,7 @@ const Slider = () => {
                 effect='opacity'
                 effectDuration={0.1}
                 objectFit='center'
-                src={`http://192.168.1.71:8000/${slider.image}`}
+                src={`${import.meta.env.VITE_host}/${slider.image}`}
                 alt='slider-image'
               />
             </div>

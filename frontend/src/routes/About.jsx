@@ -6,10 +6,10 @@ const About = () => {
   return (
     <>
       <MetaTags
-        title='About | Jayram Handicraft Art Gallery Pvt. Ltd'
-        description='Jayram Handicraft Art Gallery provides excellent quality Traditional Thangkas crafted with love and we believe that art is meant to be seen, appreciated, and valued, just like the artists who create them. our mission is to promote Nepalese art and crafts through the world'
+        title='About | Jayaram Handicraft Art Gallery'
+        description='Jayaram Handicraft Art Gallery provides excellent quality Traditional Thangkas crafted with love and we believe that art is meant to be seen, appreciated, and valued, just like the artists who create them. our mission is to promote Nepalese art and crafts through the world'
         image='/images/logo.png'
-        name='Jayram Handicraft Art Gallery Pvt. Ltd' />
+        name='Jayaram Handicraft Art Gallery' />
       <section>
         <div className='container mx-auto'>
           <Breadcrumb location='About' />
@@ -29,9 +29,9 @@ const About = () => {
               />
             </div>
             <div className="text-sec max-sm:px-4">
-              <h1 className='text-2xl max-sm:text-xl max-lg:text-center font-bold max-sm:py-2 pt-4'>Welcome To Jayram Handicraft Art Gallery</h1>
+              <h1 className='text-2xl max-sm:text-xl max-lg:text-center font-bold max-sm:py-2 pt-4'>Welcome To Jayaram Handicraft Art Gallery</h1>
               <h1 className='text-2xl max-sm:text-xl font-bold py-4 text-[#0D276A]'>About us</h1>
-              <p className='text-gray-600 pt-4'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis error earum rem dolor illum nostrum qui explicabo nam porro adipisci, mollitia eius maiores voluptatum veritatis cum recusandae placeat dicta harum hic quas. Debitis praesentium ipsum asperiores porro optio laborum aliquam harum tempora repellat consequuntur! Soluta, sint laudantium! Numquam, quis culpa Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa doloribus possimus rem ut a. Quam aliquam unde cumque. Possimus ab ex deleniti vero adipisci id voluptate expedita facilis ad. Officiis.</p>
+              <p className='text-gray-600 pt-4'>Jayaram Handicraft Art Gallery provides excellent quality Traditional Thangkas crafted with love and we believe that art is meant to be seen, appreciated, and valued, just like the artists who create them. our mission is to promote Nepalese art and crafts through the world</p>
             </div>
           </div>
         </div>

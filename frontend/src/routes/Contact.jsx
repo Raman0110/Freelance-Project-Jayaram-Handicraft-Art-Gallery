@@ -16,7 +16,7 @@ const Contact = () => {
     const email = formData.get("email");
     const message = formData.get("message");
     try {
-      await axios.post("http://192.168.1.71:8000/api/message/add", { name, email, message });
+      await axios.post(`${import.meta.env.VITE_host}/api/message/add`, { name, email, message });
       toast.success("Message Sent Successfully", {
         autoClose: 2000,
         position: "top-center",
@@ -30,10 +30,10 @@ const Contact = () => {
   return (
     <>
       <MetaTags
-        title='Contact | Jayram Handicraft Art Gallery Pvt. Ltd'
-        description='Jayram Handicraft Art Gallery provides excellent quality Traditional Thangkas crafted with love and we believe that art is meant to be seen, appreciated, and valued, just like the artists who create them. our mission is to promote Nepalese art and crafts through the world'
+        title='Contact | Jayaram Handicraft Art Gallery'
+        description='Jayaram Handicraft Art Gallery provides excellent quality Traditional Thangkas crafted with love and we believe that art is meant to be seen, appreciated, and valued, just like the artists who create them. our mission is to promote Nepalese art and crafts through the world'
         image='/images/logo.png'
-        name='Jayram Handicraft Art Gallery Pvt. Ltd' />
+        name='Jayaram Handicraft Art Gallery' />
       <section className='max-sm'>
         <ToastContainer />
         <div className="container mx-auto">
@@ -63,9 +63,9 @@ const Contact = () => {
               />
             </div>
           </div>
-          <div className="map mb-4">
+          {/* <div className="map mb-4">
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d28263.98120907261!2d85.3729688731201!3d27.686467476505875!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb1aa2babeb1db%3A0x45c7ae5da09c972a!2sSainik%20Awasiya%20Mahavidyalaya%20-%20Bhaktapur!5e0!3m2!1sen!2snp!4v1728028767125!5m2!1sen!2snp" height="450" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" className='w-full'></iframe>
-          </div>
+          </div> */}
         </div>
       </section>
     </>

@@ -10,6 +10,7 @@ import axios from 'axios';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import Loading from '../components/Loading/Loading';
 import MetaTags from '../components/MetaTags/MetaTags';
+import Breadcrumb from '../components/Breedcrum/Breadcrumb';
 
 const BlogSinglePage = () => {
   const [blogs, setBlogs] = useState([]);
@@ -19,7 +20,7 @@ const BlogSinglePage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get("http://192.168.1.71:8000/api/blog")
+    axios.get(`${import.meta.env.VITE_host}/api/blog`)
       .then((res) => {
         setBlogs(res.data);
       })
@@ -27,7 +28,7 @@ const BlogSinglePage = () => {
         console.log(err);
       });
 
-    axios.get(`http://192.168.1.71:8000/api/blog/get/${slug}`)
+    axios.get(`${import.meta.env.VITE_host}/api/blog/get/${slug}`)
       .then((res) => {
         if (res.data && Object.keys(res.data).length === 0) {
           navigate('/error');
@@ -48,16 +49,17 @@ const BlogSinglePage = () => {
           <Loading />
         </div> :
         <section>
+          <Breadcrumb location='Blog' subLocation={`${singleBlog.name}`} />
           <MetaTags
             title={singleBlog.name}
             description={singleBlog.description}
-            image={`http://192.168.1.71:8000/${singleBlog.image}`}
-            name='Jayram Handicraft Art Gallery Pvt. Ltd' />
+            image={`${import.meta.env.VITE_host}/${singleBlog.image}`}
+            name='Jayaram Handicraft Art Gallery' />
 
           <div className="container mx-auto">
             <h2 className='text-center font-bold text-3xl py-8'>{singleBlog.name}</h2>
             <div className="blog-img sm:w-[550px] sm:h-[500px] mx-auto">
-              <img src={`http://192.168.1.71:8000/${singleBlog.image}`} alt={singleBlog.name} className='w-full h-full object-contain' />
+              <img src={`${import.meta.env.VITE_host}/${singleBlog.image}`} alt={singleBlog.name} className='w-full h-full object-contain' />
             </div>
             <div className="blog-text py-4 px-20 text-justify">
               <h2 className='py-4 text-2xl font-medium text-center'>{singleBlog.name}</h2>

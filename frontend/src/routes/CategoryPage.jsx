@@ -13,7 +13,7 @@ const CategoryPage = () => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    axios.get("http://192.168.1.71:8000/api/category/category-product")
+    axios.get(`${import.meta.env.VITE_host}/api/category/category-product`)
       .then((res) => {
         setCategories(res.data);
       })
@@ -44,10 +44,10 @@ const CategoryPage = () => {
   return (
     <>
       <MetaTags
-        title='Categories | Jayram Handicraft Art Gallery Pvt. Ltd'
-        description='Jayram Handicraft Art Gallery provides excellent quality Traditional Thangkas crafted with love and we believe that art is meant to be seen, appreciated, and valued, just like the artists who create them. our mission is to promote Nepalese art and crafts through the world'
+        title='Categories | Jayaram Handicraft Art Gallery'
+        description='Jayaram Handicraft Art Gallery provides excellent quality Traditional Thangkas crafted with love and we believe that art is meant to be seen, appreciated, and valued, just like the artists who create them. our mission is to promote Nepalese art and crafts through the world'
         image='/images/logo.png'
-        name='Jayram Handicraft Art Gallery Pvt. Ltd' />
+        name='Jayaram Handicraft Art Gallery' />
       <section>
         <Breadcrumb location="categories" />
         <div className="container mx-auto">

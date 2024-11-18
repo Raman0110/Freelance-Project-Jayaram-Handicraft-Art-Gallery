@@ -7,7 +7,7 @@ import Loading from '../Loading/Loading.jsx';
 const ProductTab = () => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    axios.get("http://192.168.1.71:8000/api/product")
+    axios.get(`${import.meta.env.VITE_host}/api/product`)
       .then((res) => {
         setProducts(res.data);
       })
@@ -23,9 +23,9 @@ const ProductTab = () => {
       <div className="container mx-auto px-4 sm:px-0">
         <Tabs>
           <TabList>
-            <Tab>Featured</Tab>
-            <Tab>Latest</Tab>
-            <Tab>Most Popular</Tab>
+            <Tab className="max-sm:text-md">Featured</Tab>
+            <Tab className="max-sm:text-md">Latest</Tab>
+            <Tab className="max-sm:text-md">Most Popular</Tab>
           </TabList>
           <TabPanel>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[18px]">
@@ -44,9 +44,9 @@ const ProductTab = () => {
       <div className="container mx-auto px-4 sm:px-0">
         <Tabs>
           <TabList>
-            <Tab className="max-sm:text-md cursor-pointer outline-none">Featured</Tab>
-            <Tab className="max-sm:text-md cursor-pointer outline-none">Latest</Tab>
-            <Tab className="max-sm:text-md cursor-pointer outline-none">Most Popular</Tab>
+            <Tab className="cursor-pointer outline-none border-none sm:text-xl">Featured</Tab>
+            <Tab className="cursor-pointer outline-none border-none sm:text-xl">Latest</Tab>
+            <Tab className="cursor-pointer outline-none border-none sm:text-xl">Most Popular</Tab>
           </TabList>
 
           <TabPanel>

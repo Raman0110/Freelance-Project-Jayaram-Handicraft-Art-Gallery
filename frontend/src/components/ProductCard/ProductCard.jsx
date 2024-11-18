@@ -11,7 +11,7 @@ const ProductCard = ({ product }) => {
             effect='opacity'
             effectDuration={0.1}
             objectFit='cover'
-            src={`http://192.168.1.71:8000/${product.image}`}
+            src={`${import.meta.env.VITE_host}/${product.image}`}
             className='w-full h-full'
           />
           {/* <img src= alt={product.name}  loading='lazy' /> */}

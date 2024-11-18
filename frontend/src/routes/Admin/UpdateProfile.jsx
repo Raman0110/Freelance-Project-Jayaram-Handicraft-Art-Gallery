@@ -1,12 +1,13 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 
 const UpdateProfile = () => {
   const [admin, setAdmin] = useState({});
   useEffect(() => {
-    axios.get("http://192.168.1.71:8000/api/auth/user")
+    axios.get(`${import.meta.env.VITE_host}/api/auth/user`)
       .then((res) => {
         setAdmin(res.data[0]);
       })
@@ -21,6 +22,7 @@ const UpdateProfile = () => {
     const email = formData.get("email").trim();
     const password = formData.get("password").trim();
     const newPassword = formData.get("npassword").trim();
+    const navigate = useNavigate();
     if (!username || !email || !password) {
       toast.error("All Fields are required including password", {
         autoClose: 2000,
@@ -30,7 +32,7 @@ const UpdateProfile = () => {
       return;
     }
     try {
-      await axios.put(`http://192.168.1.71:8000/api/auth/user/update/${admin.id}`, {
+      await axios.put(`${import.meta.env.VITE_host}/api/auth/user/update/${admin.id}`, {
         username,
         email,
         password,
@@ -41,6 +43,7 @@ const UpdateProfile = () => {
         closeButton: false,
         position: "top-center"
       });
+      navigate('/dashboard');
     } catch (error) {
       console.error(error);
       toast.error(error.response?.data?.message || "Something went wrong", {

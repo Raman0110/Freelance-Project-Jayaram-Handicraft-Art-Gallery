@@ -31,7 +31,7 @@ const ViewSlider = () => {
   }
 
   useEffect(() => {
-    axios.get("http://192.168.1.71:8000/api/slider")
+    axios.get(`${import.meta.env.VITE_host}/api/slider`)
       .then((res) => {
         setSliders(res.data);
       })
@@ -39,10 +39,9 @@ const ViewSlider = () => {
         console.log(err);
       })
   });
-  const navigate = useNavigate();
 
   const handleDelete = () => {
-    axios.delete(`http://192.168.1.71:8000/api/slider/delete/${sliderToDelete.id}`, { withCredentials: true })
+    axios.delete(`${import.meta.env.VITE_host}/api/slider/delete/${sliderToDelete.id}`, { withCredentials: true })
       .then((res) => {
         closeModal();
         setSliders(sliders.filter((slider) => slider.id !== sliderToDelete.id));

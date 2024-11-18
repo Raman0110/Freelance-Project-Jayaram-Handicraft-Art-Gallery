@@ -42,5 +42,6 @@ sequelize.sync({ force: false })
 Category.hasMany(Product, { foreignKey: 'categoryId', as: 'products' });
 Product.belongsTo(Category, { foreignKey: 'categoryId', as: 'category' });
 app.listen(8000, "0.0.0.0", () => {
+
   console.log('server running');
 })

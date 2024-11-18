@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Loading from '../components/Loading/Loading';
 import MetaTags from '../components/MetaTags/MetaTags';
+import Breadcrumb from '../components/Breedcrum/Breadcrumb';
 
 
 const CategoryDetailPage = () => {
@@ -12,7 +13,7 @@ const CategoryDetailPage = () => {
   const { slug } = useParams();
 
   useEffect(() => {
-    axios.get(`http://192.168.1.71:8000/api/category/category-product/${slug}`)
+    axios.get(`${import.meta.env.VITE_host}/api/category/category-product/${slug}`)
       .then((res) => {
         setCategory(res.data.category);
         setProducts(res.data.category.products);
@@ -41,9 +42,10 @@ const CategoryDetailPage = () => {
       <MetaTags
         title={category.name}
         description={category.name}
-        image={`http://192.168.1.71:8000/${category.image}`}
-        name='Jayram Handicraft Art Gallery Pvt. Ltd' />
+        image={`${import.meta.env.VITE_host}${category.image}`}
+        name='Jayaram Handicraft Art Gallery' />
       <section>
+        <Breadcrumb location='Category' subLocation={`${category.name}`} />
         <div className="container mx-auto">
           <h2 className="text-3xl font-bold text-[#0D276A] text-center py-6">{category.name}</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[18px]">

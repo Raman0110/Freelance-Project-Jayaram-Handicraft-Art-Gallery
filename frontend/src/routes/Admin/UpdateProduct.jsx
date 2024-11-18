@@ -4,9 +4,12 @@ import axios from "axios";
 
 const UpdateProduct = () => {
   const { id } = useParams();
+
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
   const [product, setProduct] = useState([]);
   useEffect(() => {
-    axios.get(`http://192.168.1.71:8000/api/product/${id}`)
+    axios.get(`${import.meta.env.VITE_host}/api/product/${id}`)
       .then((res) => {
         setProduct(res.data);
         console.log(res.data);
@@ -18,7 +21,7 @@ const UpdateProduct = () => {
 
   const [categories, setCategories] = useState([]);
   useEffect(() => {
-    axios.get("http://192.168.1.71:8000/api/category")
+    axios.get(`${import.meta.env.VITE_host}/api/category`)
       .then((res) => {
         setCategories(res.data);
       })
@@ -47,8 +50,9 @@ const UpdateProduct = () => {
       });
       return;
     }
-    axios.put(`http://192.168.1.71:8000/api/product/update/${id}`, formData, { withCredentials: true })
+    axios.put(`${import.meta.env.VITE_host}/api/product/update/${id}`, formData, { withCredentials: true })
       .then((res) => {
+        setIsSubmitted(true);
         navigate("/dashboard/product");
       })
       .catch((err) => {
@@ -99,13 +103,13 @@ const UpdateProduct = () => {
 
         <label htmlFor="image">Upload Image</label>
         <input type="file" name="image" id="image" />
-        <img src={`http://192.168.1.71:8000/${product.image}`} alt="unable to load image" width="250px" />
+        <img src={`${import.meta.env.VITE_host}/${product.image}`} alt="unable to load image" width="250px" />
 
         <label htmlFor="thumbnails">Upload Thumbnails</label>
         <input type="file" name="thumbnails" id="thumbnails" multiple />
         <div className="flex gap-4">
           {product.thumbnails && product.thumbnails.map((thumbnail, index) => (
-            <img src={`http://192.168.1.71:8000/${thumbnail}`} key={index} alt="unable to load image" width="250px" />
+            <img src={`${import.meta.env.VITE_host}/${thumbnail}`} key={index} alt="unable to load image" width="250px" />
           ))}
         </div>
         <label htmlFor="featured">Featured</label>
@@ -122,7 +126,7 @@ const UpdateProduct = () => {
           <option value={false} selected={!product.mostPopular}>No</option>
         </select>
 
-        <button className='bg-[#0D276A] text-white mt-5 p-3 rounded-md' type='submit'>Update Product</button>
+        <button className='bg-[#0D276A] text-white mt-5 p-3 rounded-md' type='submit' disabled={isSubmitted ? true : false}>Update Product</button>
       </form>
     </section>
   )

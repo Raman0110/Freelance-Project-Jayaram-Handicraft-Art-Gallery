@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 const AddProductCata = () => {
   const navigate = useNavigate();
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,7 +29,8 @@ const AddProductCata = () => {
     formData.set('active', active.toString());
 
     try {
-      await axios.post("http://192.168.1.71:8000/api/category/add", formData, { withCredentials: true });
+      await axios.post(`${import.meta.env.VITE_host}/api/category/add`, formData, { withCredentials: true });
+      setIsSubmitted(true);
       toast.success("Category added successfully", {
         closeButton: false,
         autoClose: 2000,
@@ -92,7 +94,7 @@ const AddProductCata = () => {
           className='ml-2'
         />
 
-        <button className='bg-[#0D276A] text-white mt-5 p-3 rounded-md w-full'>
+        <button className='bg-[#0D276A] text-white mt-5 p-3 rounded-md w-full' disabled={isSubmitted ? true : false}>
           Add Category
         </button>
       </form>

@@ -9,7 +9,7 @@ const BlogCard = ({ blog }) => {
           effect='opacity'
           effectDuration={0.1}
           objectFit='cover'
-          src={`http://192.168.1.71:8000/${blog.image}`}
+          src={`${import.meta.env.VITE_host}/${blog.image}`}
           className='w-full h-full'
         />
       </div>

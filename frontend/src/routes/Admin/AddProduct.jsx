@@ -6,12 +6,12 @@ import { useNavigate } from 'react-router-dom';
 
 const AddProduct = () => {
   const navigate = useNavigate();
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   // Handle form submission
   const handleAddProduct = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-
     const name = formData.get('name').trim();
     const slug = formData.get('slug').trim();
     const categoryId = parseInt(formData.get('category'));
@@ -21,6 +21,9 @@ const AddProduct = () => {
     const image = formData.get('image');
     const featured = formData.get('featured');
     const mostPopular = formData.get('mostPopular');
+
+
+
     if (!name || !slug || !categoryId || !size || !description || !availability || !image || featured == "" || mostPopular == "") {
       toast.error("All fields are required, including the image upload", {
         autoClose: 2000,
@@ -31,10 +34,11 @@ const AddProduct = () => {
     }
     formData.append('categoryId', categoryId);
     try {
-      await axios.post("http://192.168.1.71:8000/api/product/add", formData, {
+      await axios.post(`${import.meta.env.VITE_host}/api/product/add`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
         withCredentials: true
       });
+      setIsSubmitted(true);
       toast.success("Product added successfully", {
         autoClose: 2000,
         position: "top-center",
@@ -55,7 +59,7 @@ const AddProduct = () => {
 
   const [categories, setCategories] = useState([]);
   useEffect(() => {
-    axios.get("http://192.168.1.71:8000/api/category")
+    axios.get(`${import.meta.env.VITE_host}/api/category`)
       .then((res) => {
         setCategories(res.data);
         console.log(res.data);
@@ -120,7 +124,7 @@ const AddProduct = () => {
           <option value="false">No</option>
         </select>
 
-        <button className='bg-[#0D276A] text-white mt-5 p-3 rounded-md'>Add Product</button>
+        <button className='bg-[#0D276A] text-white mt-5 p-3 rounded-md' disabled={isSubmitted ? true : false} >Add Product</button>
       </form>
     </section>
   )

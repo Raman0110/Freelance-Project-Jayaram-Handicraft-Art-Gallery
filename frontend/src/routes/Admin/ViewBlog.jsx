@@ -19,7 +19,6 @@ const customStyles = {
 
 
 const ViewBlog = () => {
-  const navigate = useNavigate();
   const [blogs, setBlogs] = useState([]);
   const [modalIsOpen, setIsOpen] = useState(false);
   const [blogToDelete, setBlogToDelete] = useState(null);
@@ -31,10 +30,10 @@ const ViewBlog = () => {
     setIsOpen(false);
   }
   const handleDelete = () => {
-    axios.delete(`http://192.168.1.71:8000/api/blog/delete/${blogToDelete.id}`, { withCredentials: true })
+    axios.delete(`${import.meta.env.VITE_host}/api/blog/delete/${blogToDelete.id}`, { withCredentials: true })
       .then((res) => {
         closeModal();
-        setBLogs(blogs.filter((blog) => blog.id !== blogToDelete.id));
+        setBlogs(blogs.filter((blog) => blog.id !== blogToDelete.id));
         toast.success("Blog deleted successfully", {
           autoClose: 2000,
           position: "top-right",
@@ -47,7 +46,7 @@ const ViewBlog = () => {
   }
 
   useEffect(() => {
-    axios.get("http://192.168.1.71:8000/api/blog")
+    axios.get(`${import.meta.env.VITE_host}/api/blog`)
       .then((res) => {
         setBlogs(res.data)
       })

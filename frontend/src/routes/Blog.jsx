@@ -10,7 +10,7 @@ import MetaTags from '../components/MetaTags/MetaTags'
 const Blog = () => {
   const [blogs, setBlogs] = useState([]);
   useEffect(() => {
-    axios.get("http://192.168.1.71:8000/api/blog")
+    axios.get(`${import.meta.env.VITE_host}/api/blog`)
       .then((res) => {
         setBlogs(res.data);
       })
@@ -36,10 +36,10 @@ const Blog = () => {
   return (
     <>
       <MetaTags
-        title='Blogs | Jayram Handicraft Art Gallery Pvt. Ltd'
-        description='Jayram Handicraft Art Gallery provides excellent quality Traditional Thangkas crafted with love and we believe that art is meant to be seen, appreciated, and valued, just like the artists who create them. our mission is to promote Nepalese art and crafts through the world'
+        title='Blogs | Jayaram Handicraft Art Gallery'
+        description='Jayaram Handicraft Art Gallery provides excellent quality Traditional Thangkas crafted with love and we believe that art is meant to be seen, appreciated, and valued, just like the artists who create them. our mission is to promote Nepalese art and crafts through the world'
         image='/images/logo.png'
-        name='Jayram Handicraft Art Gallery Pvt. Ltd' />
+        name='Jayaram Handicraft Art Gallery' />
       <section>
         <Breadcrumb location='Blogs' />
         <div className='container mx-auto my-4'>

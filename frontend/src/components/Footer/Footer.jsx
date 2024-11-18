@@ -11,11 +11,11 @@ const Footer = () => {
           <div className="grid md:grid-cols-3">
             <div className="flex items-center gap-2 md:justify-center py-4 px-2">
               <FontAwesomeIcon icon={faLocationDot} size='lg' color='#0D276A' />
-              <p>Bhaktapur, Nepal</p>
+              <p>Address: <br /> Bhaktapur, Nepal</p>
             </div>
             <div className="flex items-center gap-2 md:justify-center py-4 px-2">
               <FontAwesomeIcon icon={faEnvelope} size='lg' color='#0D276A' />
-              <p>Email us:<br /> jayramartgallery@gmail.com</p>
+              <p>Email us:<br /> admin@jayaramhandicraftartgallery.com.np</p>
             </div>
             <div className="flex items-center gap-2 py-4 px-2 md:justify-center">
               <FontAwesomeIcon icon={faPhone} size='lg' color='#0D276A' />
@@ -28,8 +28,10 @@ const Footer = () => {
         <div className="container mx-auto px-4 sm:px-0">
           <div className="grid md:grid-cols-3 gap-4">
             <div className="footer-col">
-              <h2 className='font-bold text-2xl'>Jayram Handicraft Art Gallery</h2>
-              <p className='pt-2'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus, aliquam fugiat. Excepturi, cupiditate vel.</p>
+              <div className='w-[80px]'>
+                <img src="/images/logo.PNG" alt="logo" />
+              </div>
+              <p className='pt-2'>Jayaram Handicraft Art Gallery provides excellent quality Traditional Thangkas crafted with love.</p>
             </div>
             <div className="footer-col ">
               <h4 className='font-bold text-xl pb-2'>Links</h4>
@@ -43,9 +45,9 @@ const Footer = () => {
             </div>
             <div className="footer-col">
               <h2 className='text-xl font-bold pb-2'>Contact</h2>
-              <p> <a href=""><FontAwesomeIcon icon={faEnvelope} className='mr-2' color='#0D276A' />   jayramhandicraft@gmail.com</a></p>
-              <p><a href=""> <FontAwesomeIcon icon={faPhone} className='mr-2' color='#0D276A' />+977 9851060804</a></p>
-              <p><a href=""> <FontAwesomeIcon icon={faLocationDot} className='mr-2' color='#0D276A' />   Bhaktapur, Nepal</a></p>
+              <p> <a href="mailto:admin@jayaramhandicraftartgallery.com.np"><FontAwesomeIcon icon={faEnvelope} className='mr-2' color='#0D276A' />  admin@jayaramhandicraftartgallery.com.np</a></p>
+              <p><a href="tel:9851060804"> <FontAwesomeIcon icon={faPhone} className='mr-2' color='#0D276A' />+977 9851060804</a></p>
+              <p><a> <FontAwesomeIcon icon={faLocationDot} className='mr-2' color='#0D276A' />   Bhaktapur, Nepal</a></p>
             </div>
           </div>
         </div>

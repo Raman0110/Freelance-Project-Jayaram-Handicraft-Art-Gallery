@@ -186,7 +186,7 @@ export const shopProducts = async (req, res) => {
     }
 
     if (search) {
-      filter.name = { [Op.iLike]: `%${search}%` };
+      filter.name = { [Op.like]: `%${search}%` };
     }
 
     const products = await Product.findAll({

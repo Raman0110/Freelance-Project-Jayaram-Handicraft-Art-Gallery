@@ -7,7 +7,7 @@ import { Link, useNavigate } from 'react-router-dom'
 const Topbar = () => {
   const navigate = useNavigate();
   const handleLogout = () => {
-    axios.post("http://192.168.1.71:8000/api/auth/logout", {}, { withCredentials: true })
+    axios.post("https://jayaramhandicraftartgallery.com.np/api/auth/logout", {}, { withCredentials: true })
       .then((res) => {
         navigate('/login')
       })

@@ -29,7 +29,6 @@ import ViewProductCata from './routes/Admin/ViewProductCata.jsx';
 import ViewSlider from './routes/Admin/ViewSlider.jsx';
 import AddSlider from './routes/Admin/AddSlider.jsx';
 import Messages from './routes/Admin/Messages.jsx';
-import Orders from './routes/Admin/Orders.jsx';
 import UpdateProductCata from './routes/Admin/UpdateProductCata.jsx';
 import UpdateBLog from './routes/Admin/UpdateBlog.jsx';
 import UpdateProduct from './routes/Admin/UpdateProduct.jsx';
@@ -80,7 +79,6 @@ const router = createBrowserRouter([
       { path: "product/category/add", element: <AddProductCata /> },
       { path: "product/category/update/:id", element: <UpdateProductCata /> },
       { path: "messages", element: <Messages /> },
-      { path: "orders", element: <Orders /> },
     ]
   }]);
 

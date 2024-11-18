@@ -27,7 +27,7 @@ const Header = () => {
   }
   const [categories, setCategories] = useState([]);
   useEffect(() => {
-    axios.get("http://192.168.1.71:8000/api/category")
+    axios.get(`${import.meta.env.VITE_host}/api/category`)
       .then((res) => {
         setCategories(res.data);
       })
