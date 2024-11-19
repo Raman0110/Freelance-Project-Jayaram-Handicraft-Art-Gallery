@@ -3,6 +3,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const AddProduct = () => {
   const navigate = useNavigate();
@@ -10,6 +12,7 @@ const AddProduct = () => {
 
   // Handle form submission
   const handleAddProduct = async (e) => {
+    setIsSubmitted(true);
     e.preventDefault();
     const formData = new FormData(e.target);
     const name = formData.get('name').trim();
@@ -21,15 +24,13 @@ const AddProduct = () => {
     const image = formData.get('image');
     const featured = formData.get('featured');
     const mostPopular = formData.get('mostPopular');
-
-
-
     if (!name || !slug || !categoryId || !size || !description || !availability || !image || featured == "" || mostPopular == "") {
       toast.error("All fields are required, including the image upload", {
         autoClose: 2000,
         position: "top-center",
         closeButton: false
       });
+      setIsSubmitted(false);
       return;
     }
     formData.append('categoryId', categoryId);
@@ -38,7 +39,6 @@ const AddProduct = () => {
         headers: { "Content-Type": "multipart/form-data" },
         withCredentials: true
       });
-      setIsSubmitted(true);
       toast.success("Product added successfully", {
         autoClose: 2000,
         position: "top-center",
@@ -54,6 +54,7 @@ const AddProduct = () => {
         position: "top-center",
         closeButton: false
       });
+      setIsSubmitted(false);
     }
   }
 
@@ -124,7 +125,13 @@ const AddProduct = () => {
           <option value="false">No</option>
         </select>
 
-        <button className='bg-[#0D276A] text-white mt-5 p-3 rounded-md' disabled={isSubmitted ? true : false} >Add Product</button>
+        <button className={`text-white mt-5 p-3 rounded-md ${isSubmitted ? 'bg-[#4a69b6]' : 'bg-[#0D276A]'}`} disabled={isSubmitted ? true : false} >
+          Add Product
+          {
+            isSubmitted &&
+            <FontAwesomeIcon icon={faSpinner} spin pulse className='ml-2' />
+          }
+        </button>
       </form>
     </section>
   )

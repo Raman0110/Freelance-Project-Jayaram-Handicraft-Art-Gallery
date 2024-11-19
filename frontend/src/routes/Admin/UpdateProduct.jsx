@@ -31,6 +31,7 @@ const UpdateProduct = () => {
   }, [])
   const navigate = useNavigate();
   const handleSubmit = (e) => {
+    setIsSubmitted(true);
     e.preventDefault();
     const formData = new FormData(e.target);
     const name = formData.get('name').trim();
@@ -48,6 +49,7 @@ const UpdateProduct = () => {
         position: "top-center",
         closeButton: false
       });
+      setIsSubmitted(false);
       return;
     }
     axios.put(`${import.meta.env.VITE_host}/api/product/update/${id}`, formData, { withCredentials: true })
@@ -57,6 +59,7 @@ const UpdateProduct = () => {
       })
       .catch((err) => {
         console.log(err);
+        setIsSubmitted(false);
       })
   }
   const handleChange = (e) => {
@@ -125,8 +128,13 @@ const UpdateProduct = () => {
           <option value={true} selected={product.mostPopular}>Yes</option>
           <option value={false} selected={!product.mostPopular}>No</option>
         </select>
-
-        <button className='bg-[#0D276A] text-white mt-5 p-3 rounded-md' type='submit' disabled={isSubmitted ? true : false}>Update Product</button>
+        <button className={`text-white mt-5 p-3 rounded-md ${isSubmitted ? 'bg-[#4a69b6]' : 'bg-[#0D276A]'}`} disabled={isSubmitted ? true : false} >
+          Update Product
+          {
+            isSubmitted &&
+            <FontAwesomeIcon icon={faSpinner} spin pulse className='ml-2' />
+          }
+        </button>
       </form>
     </section>
   )

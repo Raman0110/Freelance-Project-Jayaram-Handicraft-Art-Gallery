@@ -18,7 +18,10 @@ const UpdateProductCata = () => {
         console.log(err);
       })
   }, [id])
+
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const handleUpdate = (e) => {
+    setIsSubmitted(true);
     e.preventDefault();
     const formData = new FormData(e.target);
     const name = formData.get('name').trim();
@@ -30,6 +33,7 @@ const UpdateProductCata = () => {
         autoClose: 2000,
         position: "top-center"
       });
+      setIsSubmitted(false);
       return;
     }
     const active = e.target.active.checked ? true : false;
@@ -40,6 +44,7 @@ const UpdateProductCata = () => {
       })
       .catch((err) => {
         console.log(err);
+        setIsSubmitted(false);
       })
   }
   const handleChange = (e) => {
@@ -75,7 +80,13 @@ const UpdateProductCata = () => {
         <label htmlFor="active">Active</label>
         <input type="checkbox" onChange={handleChange} name="active" id="active" className='ml-2' checked={category.active} />
         <img src={`${import.meta.env.VITE_host}/${category.image}`} alt="unable to load image" width="250px" />
-        <button className='bg-[#0D276A] text-white mt-5 p-3 rounded-md w-full'>Update Category</button>
+        <button className={`text-white mt-5 p-3 rounded-md ${isSubmitted ? 'bg-[#4a69b6]' : 'bg-[#0D276A]'}`} disabled={isSubmitted ? true : false} >
+          Update Category
+          {
+            isSubmitted &&
+            <FontAwesomeIcon icon={faSpinner} spin pulse className='ml-2' />
+          }
+        </button>
       </form>
     </section>
   )

@@ -32,7 +32,10 @@ const UpdateBLog = () => {
       [name]: value,
     }));
   };
+
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const handleSubmit = (e) => {
+    setIsSubmitted(true);
     e.preventDefault();
     const formData = new FormData(e.target);
     const name = formData.get("name").trim();
@@ -45,6 +48,7 @@ const UpdateBLog = () => {
         position: "top-center",
         closeButton: false
       });
+      setIsSubmitted(false);
       return;
     }
     axios.put(`${import.meta.env.VITE_host}/api/blog/update/${id}`, formData, { withCredentials: true })
@@ -53,6 +57,7 @@ const UpdateBLog = () => {
       })
       .catch((err) => {
         console.log(err);
+        setIsSubmitted(false);
       })
   }
   return (
@@ -73,7 +78,13 @@ const UpdateBLog = () => {
         <input type="file" name="image" id="image" />
 
         <img src={`${import.meta.env.VITE_host}/${blog.image}`} alt="unable to load image" width="250px" />
-        <button className='bg-[#0D276A] text-white mt-5 p-3 rounded-md'>Update Blog</button>
+        <button className={`text-white mt-5 p-3 rounded-md ${isSubmitted ? 'bg-[#4a69b6]' : 'bg-[#0D276A]'}`} disabled={isSubmitted ? true : false} >
+          Update Blog
+          {
+            isSubmitted &&
+            <FontAwesomeIcon icon={faSpinner} spin pulse className='ml-2' />
+          }
+        </button>
       </form>
     </section>
   )

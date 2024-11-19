@@ -213,7 +213,7 @@ const SinglePage = () => {
                 <div className="descSection w-full md:w-2/5 px-4 max-md:mt-6">
                   <h4 className='text-3xl font-bold'>{product.name}</h4>
                   <p className='inline-block px-3 rounded-md bg-[#0D276A] text-white mt-2 mb-4'>{product.category.name}</p>
-                  <p className='font-medium'>Size:  {product.size} inches </p>
+                  <p className='font-medium'>Size:  {product.size}</p>
                   <p className='font-medium mt-4'>Stock: <span className='text-[#008A00]'>{product.availability}</span></p>
                   <div className="flex gap-6 mt-4 text-white">
                     <button className='bg-[#0D276A] hover:bg-[#49619c] py-2 px-4 rounded-md font-medium' onClick={openModal}>Get Thangka</button>

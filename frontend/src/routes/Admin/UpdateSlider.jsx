@@ -22,7 +22,10 @@ const UpdateSlider = () => {
     }));
   };
   const navigate = useNavigate();
+
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const handleSubmit = (e) => {
+    setIsSubmitted(true);
     e.preventDefault();
     const formData = new FormData(e.target);
     const name = formData.get("name").trim();
@@ -33,6 +36,7 @@ const UpdateSlider = () => {
         position: "top-center",
         closeButton: false
       });
+      setIsSubmitted(false);
       return;
     }
 
@@ -43,6 +47,7 @@ const UpdateSlider = () => {
       })
       .catch((err) => {
         console.log(err);
+        setIsSubmitted(false);
       })
   }
   return (
@@ -56,7 +61,13 @@ const UpdateSlider = () => {
         <input type="file" name="image" id="image" />
 
         <img src={`${import.meta.env.VITE_host}/${slider.image}`} alt="unable to load image" width="250px" />
-        <button className='bg-[#0D276A] text-white mt-5 p-3 rounded-md' type='submit' >Update Product</button>
+        <button className={`text-white mt-5 p-3 rounded-md ${isSubmitted ? 'bg-[#4a69b6]' : 'bg-[#0D276A]'}`} disabled={isSubmitted ? true : false} >
+          Update Slider
+          {
+            isSubmitted &&
+            <FontAwesomeIcon icon={faSpinner} spin pulse className='ml-2' />
+          }
+        </button>
       </form>
     </section>
   )

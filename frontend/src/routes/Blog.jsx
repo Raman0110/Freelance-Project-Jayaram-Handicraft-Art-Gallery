@@ -9,30 +9,18 @@ import MetaTags from '../components/MetaTags/MetaTags'
 
 const Blog = () => {
   const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     axios.get(`${import.meta.env.VITE_host}/api/blog`)
       .then((res) => {
         setBlogs(res.data);
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
       })
   }, [])
-  if (blogs.length == 0) {
-    return (
-      <section>
-        <Breadcrumb location='Blogs' />
-        <div className='container mx-auto my-4'>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[18px]">
-            <Loading type='product' />
-            <Loading type='product' />
-            <Loading type='product' />
-            <Loading type='product' />
-          </div>
-        </div>
-      </section>
-    )
-  }
+
   return (
     <>
       <MetaTags
@@ -44,11 +32,27 @@ const Blog = () => {
         <Breadcrumb location='Blogs' />
         <div className='container mx-auto my-4'>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 px-4">
-            {blogs.map((blog, index) => (
-              <Link to={`/blog/${blog.slug}`}>
-                <BlogCard blog={blog} key={index} />
-              </Link>
-            ))}
+            {loading ?
+              <>
+                <Loading type='product' />
+                <Loading type='product' />
+                <Loading type='product' />
+                <Loading type='product' />
+              </> :
+              <>
+                {blogs.length == 0 ?
+                  <>
+                    <p className='col-span-full font-medium text-2xl text-center'>Sorry! No Blogs Found</p>
+                  </> :
+                  <>{
+                    blogs.map((blog, index) => (
+                      <Link to={`/blog/${blog.slug}`}>
+                        <BlogCard blog={blog} key={index} />
+                      </Link>
+                    ))
+                  }</>
+                }
+              </>}
           </div>
         </div>
       </section>

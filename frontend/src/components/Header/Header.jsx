@@ -50,7 +50,7 @@ const Header = () => {
             <div className="flex justify-between items-center">
               <div className="header-left flex gap-8 items-center">
                 <Link to="/">
-                  <img src="/images/small.png" alt="logo" />
+                  <img src="/images/logo.PNG" alt="logo" width={100} />
                 </Link>
                 <div className="search-bar relative hidden md:block">
                   <form onSubmit={handleSearch}>
@@ -75,10 +75,10 @@ const Header = () => {
               </div>
             </div>
           </div>
-          <div className={`searchBar md:hidden absolute z-10 ${search ? 'activesearchBar' : ''}`}>
+          <div className={`searchBar md:hidden pointer-events-none absolute z-10 ${search ? 'activesearchBar pointer-events-auto' : ''}`}>
             <form onSubmit={handleSearch} className='flex shadow-md'>
-              <input type="text" name="search" onChange={handleSearchChange} value={searchInput} className='border rounded-md border-slate-700 flex-grow p-4 outline-none' />
-              <button className='bg-[#1e1e1e] p-4 text-white rounded-md'>Search</button>
+              <input type="text" name="search" onChange={handleSearchChange} value={searchInput} className='border rounded-md rounded-r-none border-slate-700 flex-grow p-3 outline-none' />
+              <button className='bg-[#0D276A] p-3 text-white rounded-md rounded-l-none'>Search</button>
             </form>
           </div>
         </header>

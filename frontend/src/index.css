@@ -71,6 +71,8 @@ html {
 
 .searchBar {
   opacity: 0;
+  transform: translate(-50%);
+  left: 50%;
   transition: all 0.4s ease;
 }
 

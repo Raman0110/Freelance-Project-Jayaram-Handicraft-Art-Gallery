@@ -6,7 +6,9 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const AddSlider = () => {
   const navigate = useNavigate();
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const handleSubmit = (e) => {
+    setIsSubmitted(true);
     e.preventDefault();
     const formData = new FormData(e.target);
     const name = formData.get("name").trim();
@@ -18,6 +20,7 @@ const AddSlider = () => {
         position: "top-center",
         closeButton: false
       });
+      setIsSubmitted(false);
       return;
     }
 
@@ -38,6 +41,7 @@ const AddSlider = () => {
         autoClose: 2000,
         closeButton: false
       })
+      setIsSubmitted(false);
     }
   }
 
@@ -51,7 +55,13 @@ const AddSlider = () => {
 
         <label htmlFor="image">Upload Image</label>
         <input type="file" name="image" id="image" />
-        <button className='bg-[#0D276A] text-white mt-5 p-3 rounded-md' type='submit' >Add Slider</button>
+        <button className={`text-white mt-5 p-3 rounded-md ${isSubmitted ? 'bg-[#4a69b6]' : 'bg-[#0D276A]'}`} disabled={isSubmitted ? true : false} >
+          Add Slider
+          {
+            isSubmitted &&
+            <FontAwesomeIcon icon={faSpinner} spin pulse className='ml-2' />
+          }
+        </button>
       </form>
     </section>
   )

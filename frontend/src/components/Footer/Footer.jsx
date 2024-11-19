@@ -9,15 +9,15 @@ const Footer = () => {
       <div className="footer-top border-y-2 border-white">
         <div className="container mx-auto px-4 sm:px-0">
           <div className="grid md:grid-cols-3">
-            <div className="flex items-center gap-2 md:justify-center py-4 px-2">
+            <div className="flex items-center gap-2 md:justify-center py-4">
               <FontAwesomeIcon icon={faLocationDot} size='lg' color='#0D276A' />
               <p>Address: <br /> Bhaktapur, Nepal</p>
             </div>
-            <div className="flex items-center gap-2 md:justify-center py-4 px-2">
+            <div className="flex items-center gap-2 md:justify-center py-4">
               <FontAwesomeIcon icon={faEnvelope} size='lg' color='#0D276A' />
               <p>Email us:<br /> admin@jayaramhandicraftartgallery.com.np</p>
             </div>
-            <div className="flex items-center gap-2 py-4 px-2 md:justify-center">
+            <div className="flex items-center gap-2 py-4 md:justify-center">
               <FontAwesomeIcon icon={faPhone} size='lg' color='#0D276A' />
               <p>Call us: <br /> 9851060804</p>
             </div>
@@ -45,7 +45,7 @@ const Footer = () => {
             </div>
             <div className="footer-col">
               <h2 className='text-xl font-bold pb-2'>Contact</h2>
-              <p> <a href="mailto:admin@jayaramhandicraftartgallery.com.np"><FontAwesomeIcon icon={faEnvelope} className='mr-2' color='#0D276A' />  admin@jayaramhandicraftartgallery.com.np</a></p>
+              <p> <a href="mailto:admin@jayaramhandicraftartgallery.com.np"><FontAwesomeIcon icon={faEnvelope} className='mr-2' color='#0D276A' />admin@jayaramhandicraftartgallery.com.np</a></p>
               <p><a href="tel:9851060804"> <FontAwesomeIcon icon={faPhone} className='mr-2' color='#0D276A' />+977 9851060804</a></p>
               <p><a> <FontAwesomeIcon icon={faLocationDot} className='mr-2' color='#0D276A' />   Bhaktapur, Nepal</a></p>
             </div>

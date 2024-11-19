@@ -8,6 +8,7 @@ const AddBlog = () => {
   const navigate = useNavigate();
   const [isSubmitted, setIsSubmitted] = useState(false);
   const handleAddBlog = async (e) => {
+    setIsSubmitted(true);
     e.preventDefault();
     const formData = new FormData(e.target);
     const name = formData.get("name").trim();
@@ -21,13 +22,13 @@ const AddBlog = () => {
         position: "top-center",
         closeButton: false
       });
+      setIsSubmitted(false);
       return;
     }
 
     try {
       await axios.post(`${import.meta.env.VITE_host}/api/blog/add`, formData, { withCredentials: true });
       navigate("/dashboard/blog");
-      setIsSubmitted(true);
       toast.success("Blog added successfully", {
         autoClose: 2000,
         closeButton: false,
@@ -39,6 +40,8 @@ const AddBlog = () => {
         closeButton: false,
         position: "top-center"
       })
+
+      setIsSubmitted(false);
     }
   }
   const [name, setName] = useState("");
@@ -60,7 +63,13 @@ const AddBlog = () => {
         <textarea name="description" id="description" className='outline-none'></textarea>
         <label htmlFor="image">Upload Image</label>
         <input type="file" name="image" id="image" />
-        <button className='bg-[#0D276A] text-white mt-5 p-3 rounded-md' disabled={isSubmitted ? true : false}>Add Blog</button>
+        <button className={`text-white mt-5 p-3 rounded-md ${isSubmitted ? 'bg-[#4a69b6]' : 'bg-[#0D276A]'}`} disabled={isSubmitted ? true : false} >
+          Add Blog
+          {
+            isSubmitted &&
+            <FontAwesomeIcon icon={faSpinner} spin pulse className='ml-2' />
+          }
+        </button>
       </form>
     </section>
   )
