@@ -20,14 +20,6 @@ const BlogSinglePage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`${import.meta.env.VITE_host}/api/blog`)
-      .then((res) => {
-        setBlogs(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
     axios.get(`${import.meta.env.VITE_host}/api/blog/get/${slug}`)
       .then((res) => {
         if (res.data && Object.keys(res.data).length === 0) {
@@ -42,6 +34,15 @@ const BlogSinglePage = () => {
         navigate('/error');
       });
   }, [slug]);
+  useEffect(() => {
+    singleBlog && axios.get(`${import.meta.env.VITE_host}/api/blog`)
+      .then((res) => {
+        setBlogs(res.data.filter(b => b.id !== singleBlog.id));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [blogs])
   return (
     <>
       {loading ?

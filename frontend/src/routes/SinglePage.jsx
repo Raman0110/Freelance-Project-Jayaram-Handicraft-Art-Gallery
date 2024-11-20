@@ -63,9 +63,8 @@ const SinglePage = () => {
         if (res.data && Object.keys(res.data).length === 0) {
           navigate('/error');
         } else {
-          setProduct(res.data);
           console.log(res.data);
-
+          setProduct(res.data);
           setFormData((prevData) => ({
             ...prevData,
             productName: res.data.name
@@ -77,15 +76,17 @@ const SinglePage = () => {
         navigate('/error');
         console.log(err);
       });
+  }, [slug]);
 
-    axios.get(`${import.meta.env.VITE_host}/api/product`)
+  useEffect(() => {
+    product && axios.get(`${import.meta.env.VITE_host}/api/category/category-product/${product.category.slug}`)
       .then((res) => {
-        setProducts(res.data);
+        setProducts(res.data.category.products.filter(p => p.id != product.id));
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [slug]);
+  }, [product]);
 
   // Handle input changes
   const handleInputChange = (e) => {
@@ -126,7 +127,7 @@ const SinglePage = () => {
           <MetaTags
             title={product.name}
             description={product.description}
-            image={`${import.meta.env.VITE_host}/${product.image}`}
+            image={`/images/logo.png`}
             name='Jayaram Handicraft Art Gallery' />
           <section>
             <ToastContainer />
@@ -238,7 +239,7 @@ const SinglePage = () => {
                     }
                   }}
                 >
-                  {products.map((product, index) => (
+                  {products && products.map((product, index) => (
                     <SwiperSlide className='mb-4' key={index}>
                       <div>
                         <ProductCard product={product} />

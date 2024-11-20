@@ -169,7 +169,7 @@ const Shop = () => {
                   </> :
                   <>{
                     products.length == 0 ?
-                      <p className='col-span-full font-medium text-2xl text-center'>Sorry! No Products Found for your search "{search}"</p> :
+                      <p className='col-span-full font-medium text-2xl text-center'>Sorry! No Products Found for your search</p> :
                       products.map((product, index) => (
                         <ProductCard product={product} key={index} />
                       ))

@@ -53,7 +53,7 @@ export const getProductBySlug = async (req, res) => {
       where: { slug },
       include: {
         model: Category,
-        attributes: ['name', 'id'],
+        attributes: ['name', 'id', 'slug'],
         as: 'category'
       }
     });

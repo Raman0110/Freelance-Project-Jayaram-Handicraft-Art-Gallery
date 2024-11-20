@@ -42,7 +42,7 @@ const CategoryDetailPage = () => {
       <MetaTags
         title={category.name}
         description={category.name}
-        image={`${import.meta.env.VITE_host}${category.image}`}
+        image={`/images/logo.png`}
         name='Jayaram Handicraft Art Gallery' />
       <section>
         <Breadcrumb location='Category' subLocation={`${category.name}`} />
