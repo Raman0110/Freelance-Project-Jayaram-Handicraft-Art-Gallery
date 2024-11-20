@@ -35,13 +35,15 @@ const BlogSinglePage = () => {
       });
   }, [slug]);
   useEffect(() => {
-    singleBlog && axios.get(`${import.meta.env.VITE_host}/api/blog`)
-      .then((res) => {
-        setBlogs(res.data.filter(b => b.id !== singleBlog.id));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (singleBlog && singleBlog.id) {
+      axios.get(`${import.meta.env.VITE_host}/api/blog`)
+        .then((res) => {
+          setBlogs(res.data.filter(b => b.id !== singleBlog.id));
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }, [blogs])
   return (
     <>

@@ -79,13 +79,15 @@ const SinglePage = () => {
   }, [slug]);
 
   useEffect(() => {
-    product && axios.get(`${import.meta.env.VITE_host}/api/category/category-product/${product.category.slug}`)
-      .then((res) => {
-        setProducts(res.data.category.products.filter(p => p.id != product.id));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (product && product.category && product.category.slug) {
+      axios.get(`${import.meta.env.VITE_host}/api/category/category-product/${product.category.slug}`)
+        .then((res) => {
+          setProducts(res.data.category.products.filter(p => p.id !== product.id));
+        })
+        .catch((err) => {
+          console.error('Error fetching category products:', err);
+        });
+    }
   }, [product]);
 
   // Handle input changes
