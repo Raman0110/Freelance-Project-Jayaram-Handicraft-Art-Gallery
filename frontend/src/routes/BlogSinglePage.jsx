@@ -27,6 +27,15 @@ const BlogSinglePage = () => {
         } else {
           setSingleBlog(res.data);
           setLoading(false);
+          if (singleBlog && singleBlog.id) {
+            axios.get(`${import.meta.env.VITE_host}/api/blog`)
+              .then((res) => {
+                setBlogs(res.data.filter(b => b.id !== singleBlog && singleBlog.id));
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          }
         }
       })
       .catch((err) => {
@@ -34,17 +43,6 @@ const BlogSinglePage = () => {
         navigate('/error');
       });
   }, [slug]);
-  useEffect(() => {
-    if (singleBlog && singleBlog.id) {
-      axios.get(`${import.meta.env.VITE_host}/api/blog`)
-        .then((res) => {
-          setBlogs(res.data.filter(b => b.id !== singleBlog.id));
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  }, [blogs])
   return (
     <>
       {loading ?
@@ -86,7 +84,7 @@ const BlogSinglePage = () => {
                   }
                 }}
               >
-                {blogs.map((blog, index) => (
+                {blogs && blogs.map((blog, index) => (
                   <SwiperSlide key={index} className='mb-4'>
                     <div>
                       <Link to={`/blog/${blog.slug}`}>

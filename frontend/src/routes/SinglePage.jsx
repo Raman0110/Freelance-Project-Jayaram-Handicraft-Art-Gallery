@@ -63,7 +63,6 @@ const SinglePage = () => {
         if (res.data && Object.keys(res.data).length === 0) {
           navigate('/error');
         } else {
-          console.log(res.data);
           setProduct(res.data);
           setFormData((prevData) => ({
             ...prevData,

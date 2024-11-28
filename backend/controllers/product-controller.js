@@ -97,17 +97,69 @@ export const addProduct = async (req, res) => {
   }
 };
 
+// export const updateProduct = async (req, res) => {
+//   const { name, size, availability, description, slug, categoryId, featured, mostPopular } = req.body;
+//   const image = req.files?.image ? req.files.image[0].path : null;
+//   const thumbnails = req.files?.thumbnails ? req.files.thumbnails.map(file => file.path) : [];
+//   const thumbnailsString = thumbnails.length > 0 ? thumbnails.join(',') : '';
+//   const { id } = req.params;
+//   try {
+//     const product = await Product.findByPk(id);
+//     if (!product) return res.status(404).json({ message: "Product not found" });
+//     await product.update({
+//       name,
+//       size,
+//       availability,
+//       description,
+//       slug,
+//       categoryId,
+//       featured,
+//       mostPopular,
+//       image: image || product.image,
+//       thumbnails: thumbnailsString
+//     });
+//     if (image) {
+//       if (fs.existsSync(`./${product.image}`)) {
+//         fs.unlinkSync(`./${product.image}`);
+//       }
+//       await product.update({ image });
+//     }
+//     if (thumbnails.length > 0) {
+//       product.thumbnails.forEach(thumbnail => {
+//         if (fs.existsSync(`./${thumbnail}`)) {
+//           fs.unlinkSync(`./${thumbnail}`);
+//         }
+//       });
+//       await product.update({ thumbnails });
+//     }
+//     res.status(200).json({ message: "Product updated successfully", product });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ message: "Unable to update product" });
+//   }
+// };
+
 export const updateProduct = async (req, res) => {
   const { name, size, availability, description, slug, categoryId, featured, mostPopular } = req.body;
   const image = req.files?.image ? req.files.image[0].path : null;
   const thumbnails = req.files?.thumbnails ? req.files.thumbnails.map(file => file.path) : [];
   const thumbnailsString = thumbnails.length > 0 ? thumbnails.join(',') : '';
   const { id } = req.params;
-
   try {
     const product = await Product.findByPk(id);
     if (!product) return res.status(404).json({ message: "Product not found" });
-
+    if (image && fs.existsSync(`./${product.image}`)) {
+      fs.unlinkSync(`./${product.image}`);
+    }
+    if (thumbnails.length > 0) {
+      const oldThumbnails = product.thumbnails ? product.thumbnails.split(',') : [];
+      oldThumbnails.forEach(thumbnail => {
+        const thumbnailPath = `./${thumbnail.trim()}`;
+        if (fs.existsSync(thumbnailPath)) {
+          fs.unlinkSync(thumbnailPath);
+        }
+      });
+    }
     await product.update({
       name,
       size,
@@ -118,25 +170,8 @@ export const updateProduct = async (req, res) => {
       featured,
       mostPopular,
       image: image || product.image,
-      thumbnails: thumbnailsString
+      thumbnails: thumbnails.length > 0 ? thumbnailsString : product.thumbnails
     });
-
-    if (image) {
-      if (fs.existsSync(`./${product.image}`)) {
-        fs.unlinkSync(`./${product.image}`);
-      }
-      await product.update({ image });
-    }
-
-    if (thumbnails.length > 0) {
-      product.thumbnails.forEach(thumbnail => {
-        if (fs.existsSync(`./${thumbnail}`)) {
-          fs.unlinkSync(`./${thumbnail}`);
-        }
-      });
-      await product.update({ thumbnails });
-    }
-
     res.status(200).json({ message: "Product updated successfully", product });
   } catch (error) {
     console.error(error);
@@ -149,17 +184,26 @@ export const deleteProduct = async (req, res) => {
   try {
     const product = await Product.findByPk(id);
     if (!product) return res.status(404).json({ message: "Product not found" });
-
-    if (fs.existsSync(`./${product.image}`)) {
-      fs.unlinkSync(`./${product.image}`);
+    const mainImagePath = `./${product.image}`;
+    if (fs.existsSync(mainImagePath)) {
+      const stats = fs.lstatSync(mainImagePath);
+      if (stats.isFile()) {
+        fs.unlinkSync(mainImagePath);
+      } else {
+        console.log(`Skipped deleting directory: ${mainImagePath}`);
+      }
     }
-
     product.thumbnails.split(',').forEach(thumbnail => {
-      if (fs.existsSync(`./${thumbnail}`)) {
-        fs.unlinkSync(`./${thumbnail}`);
+      const thumbnailPath = `./${thumbnail}`;
+      if (fs.existsSync(thumbnailPath)) {
+        const stats = fs.lstatSync(thumbnailPath);
+        if (stats.isFile()) {
+          fs.unlinkSync(thumbnailPath);
+        } else {
+          console.log(`Skipped deleting directory: ${thumbnailPath}`);
+        }
       }
     });
-
     await product.destroy();
     res.status(200).json({ message: "Product Deleted" });
   } catch (error) {
@@ -167,6 +211,13 @@ export const deleteProduct = async (req, res) => {
     res.status(500).json({ message: "Unable to delete product" });
   }
 };
+
+
+
+
+
+
+
 
 export const shopProducts = async (req, res) => {
   const filter = {};

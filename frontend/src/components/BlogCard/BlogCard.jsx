@@ -10,12 +10,12 @@ const BlogCard = ({ blog }) => {
           effectDuration={0.1}
           objectFit='cover'
           src={`${import.meta.env.VITE_host}/${blog.image}`}
-          className='w-full h-full'
+          className='w-full h-full object-cover'
         />
       </div>
       <div className="blogText">
         <h1 className='text-lg font-bold'>{blog.name}</h1>
-        <p>{blog.description.slice(0, 100)}</p>
+        {/* <p>{blog.description.slice(0, 50)}....</p> */}
       </div>
     </article>
   )
